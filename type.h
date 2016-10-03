@@ -1,25 +1,40 @@
 #include <string>
+#include <iostream>  
 
-typedef struct intType {
-  std::string str;
-  int value;
-  int coeff;
-  int max;
-  int min;
+class Variable
+{
+	public:
+		std::string name; 
+		int coeff;
+	void showName(){
+		std::cout<<coeff;
+		std::cout<<name;
+		getchar();
+	}
+	
 };
 
-typedef struct binType {
-  std::string str;
-  int value;
-  int coeff;
-  int max=1;
-  int min=0;
-} ;
-
-typedef struct floatType{
-  std::string str;
-  int value;
-  int coeff;
-  float max;
-  float min;
+class IntVar: public Variable
+{
+	public:
+		int max;
+		int min;
+		int value;
 };
+
+class BinVar : public Variable
+{
+	public:
+		int max = 1;
+		int min = 0;
+};
+
+class FloatVar: public Variable
+{
+	public:
+		float max;
+		float min;
+		float value;
+};
+
+

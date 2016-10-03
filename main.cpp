@@ -3,9 +3,12 @@
 using namespace std;
 
 int main(){
-	intType a;
-	a.coeff = 10;
-	a.max = 100000;
-	a.min = 0;
-	a.str = "X1";
+	IntVar a;
+	a.name = "X1";
+	a.coeff = -1;
+	a.showName();
+	BinVar b;
+	b.name = "Y1";
+	b.coeff = 10;
+	b.showName();
 }
