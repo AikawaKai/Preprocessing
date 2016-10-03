@@ -14,7 +14,7 @@ class Variable
 	
 };
 
-class IntVar: public Variable
+class intVar: public Variable
 {
 	public:
 		int max;
@@ -22,14 +22,14 @@ class IntVar: public Variable
 		int value;
 };
 
-class BinVar : public Variable
+class binVar : public Variable
 {
 	public:
 		int max = 1;
 		int min = 0;
 };
 
-class FloatVar: public Variable
+class floatVar: public Variable
 {
 	public:
 		float max;
