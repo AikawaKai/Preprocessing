@@ -1,0 +1,23 @@
+#include <iostream>  
+using namespace std;
+int main () {  
+    long    X1 , X2, f; 
+	long    X1result,X2result, MaxF; 
+  	MaxF= 0;
+ 	for (X1= 0; X1<=50; X1 ++)
+		for (X2= 0; X2<=50; X2 ++)  
+        	if (X1+X2<30  && X1-X2 < 20 )  
+            	{ 
+                	f=5*X1+6*X2; 
+                    if (f> MaxF)  
+                        { 
+                            X1result = X1;  
+                            X2result = X2;   
+                            MaxF= f; 
+                    	}
+            	}	  
+	cout<<"Maximum f ="<<MaxF; 
+	cout<<"X1 solution ="<<X1result; 
+	cout<<"X2 solution ="<<X2result;  
+	getchar();
+} 
