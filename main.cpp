@@ -1,5 +1,6 @@
 #include <iostream>  
 #include <limits>
+#include <typeinfo>
 #include "type.h"
 using namespace std;
 
@@ -27,8 +28,15 @@ int main(){
 	y5.max = 0;
 	y5.max = std::numeric_limits<int>::max();
 	
-	Variable equ1 []  = {x1, x2, x3, y4, y5};
+	Variable cond []  = {x1, x2, x3, y4, y5};
+	int b1 = 13;
+	int b2 = -9;
 	int coeffEqu1 [] = {4, -3, -2, 1, 2};
-	Variable equ2 []  = {x1, x2, x3, y4, y5};
 	int coeffEqu2 [] = {-3, 2, -1, 2, 3};
+	bool updated = true;
+	while(updated)
+	{
+		updated = false;
+	}
+	getchar();
 }
