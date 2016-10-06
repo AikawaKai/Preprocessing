@@ -2,6 +2,7 @@
 #include <limits>
 #include <typeinfo>
 #include "type.h"
+#include "preprocess.h"
 using namespace std;
 
 int main(){
@@ -31,12 +32,8 @@ int main(){
 	Variable cond []  = {x1, x2, x3, y4, y5};
 	int b1 = 13;
 	int b2 = -9;
-	int coeffEqu1 [] = {4, -3, -2, 1, 2};
-	int coeffEqu2 [] = {-3, 2, -1, 2, 3};
-	bool updated = true;
-	while(updated)
-	{
-		updated = false;
-	}
-	getchar();
+	int coeffEqu [2][5] = {{4, -3, -2, 1, 2}, {-3, 2, -1, 2, 3}};
+	Variable *newCond = boundsPreprocess(cond, (int *) coeffEqu, 2, 5);
 }
+
+
