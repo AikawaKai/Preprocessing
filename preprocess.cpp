@@ -36,6 +36,10 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		{
 			(*cond)[pos]->setMax(value);
 		}
+		else
+		{
+			return false;
+		} 
 	}
 	else
 	{
@@ -43,13 +47,17 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		{
 			(*cond)[pos]->setMin(value);
 		}
+		else
+		{
+			return false;
+		} 
 	}
-	cout<<value;
 	return true;
 }
 
 void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
+	bool updated_t;
 	/*
 	while(updated)
 	{
@@ -63,15 +71,21 @@ void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int nu
 		}
 		updated = false;
 	}*/
-	for(int i=0; i<numrow; i++)
+	while(updated)
 	{
-		for(int j=0; j<numcol;j++)
+		updated = false;
+		for(int i=0; i<numrow; i++)
 		{
-			//(*cond)[j]->showType();
-			updated = update(cond, numcol, coeffEqu, i, j);
+			for(int j=0; j<numcol;j++)
+			{
+				//(*cond)[j]->showType();
+				updated_t = update(cond, numcol, coeffEqu, i, j);
+				if(updated_t)
+				{
+					updated = true;
+				}
+			}
 		}
-		
-		//**cond[i]->showType();
 	}
 	getchar();
 }

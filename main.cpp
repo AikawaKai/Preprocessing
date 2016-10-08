@@ -39,6 +39,16 @@ int main(){
 	int b2 = -9;
 	int coeffEqu [2][6] = {{4, -3, -2, 1, 2, b1}, {-3, 2, -1, 2, 3, b2}};
 	boundsPreprocess(&cond, 5, (int *)coeffEqu, 2, 5);
+	for(int i=0;i<5;i++)
+	{
+		cond[i]->showName();
+		cout<<"\n";
+		cout<<"Min: ";
+		cout<<cond[i]->returnMin();
+		cout<<"\nMax: ";
+		cout<<cond[i]->returnMax();
+		cout<<"\n####\n";
+	}
 }
 
 
