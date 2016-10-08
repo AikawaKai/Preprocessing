@@ -1,5 +1,6 @@
 #include <string>
-#include <iostream>  
+#include <iostream>
+#include <math.h>
 
 class Variable
 {
@@ -25,6 +26,14 @@ class Variable
 		return max;
 	}
 	
+	virtual void setMin(float value){
+		min = value;
+	}
+	
+	virtual void setMax(float value){
+		max = value;
+	}
+	
 };
 
 class intVar: public Variable
@@ -46,6 +55,14 @@ class intVar: public Variable
 		return max;
 	}
 	
+	virtual void setMin(float value){
+		min = ceil(value);
+	}
+	
+	virtual void setMax(float value){
+		max = floor(value);
+	}
+	
 };
 
 class binVar : public Variable
@@ -64,6 +81,14 @@ class binVar : public Variable
 	}
 	virtual float returnMax(){
 		return max;
+	}
+	
+	virtual void setMin(float value){
+		min = ceil(value);
+	}
+	
+	virtual void setMax(float value){
+		max = floor(value);
 	}
 	
 };
@@ -87,6 +112,14 @@ class floatVar: public Variable
 	
 	virtual float returnMax(){
 		return max;
+	}
+	
+	virtual void setMin(float value){
+		min = value;
+	}
+	
+	virtual void setMax(float value){
+		max = value;
 	}
 	
 };

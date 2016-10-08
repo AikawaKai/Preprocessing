@@ -6,6 +6,10 @@ using namespace std;
 bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
 	//int currcoff = coeffEqu[row*numvar+pos];
 	int currcoeff = coeffEqu[row*numvar+pos];
+	if(currcoeff==0)
+	{
+		return false;
+	}
 	float value = 1/(float)currcoeff;
 	float product = coeffEqu[row*(numvar+1)+numvar];
 	float first = 0;
@@ -26,6 +30,20 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	}
 	product += (first + second);
 	value = value * product;
+	if(currcoeff>0)
+	{
+		if(value < (*cond)[pos]->returnMax() )
+		{
+			(*cond)[pos]->setMax(value);
+		}
+	}
+	else
+	{
+		if(value>(*cond)[pos]->returnMax())
+		{
+			(*cond)[pos]->setMin(value);
+		}
+	}
 	cout<<value;
 	return true;
 }
