@@ -5,30 +5,34 @@ using namespace std;
 
 bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
 	//int currcoff = coeffEqu[row*numvar+pos];
-	int currcoeff = coeffEqu[row*numvar+pos];
+	cout<<"\nCURRENT ROW: ";
+	cout<<row;
+	int currcoeff = coeffEqu[row*(numvar+1)+pos];
+	cout<<" coeff:";
+	cout<<currcoeff;
+	cout<<"\n";
 	if(currcoeff==0)
 	{
 		return false;
 	}
 	float value = 1/(float)currcoeff;
 	float product = coeffEqu[row*(numvar+1)+numvar];
-	float first = 0;
-	float second = 0;
+	float tosum = 0;
 	for(int j=0;j<numvar;j++)
 	{
 		if(j!=pos)
 		{
-			int other = coeffEqu[row*numvar+j];
+			int other = coeffEqu[row*(numvar+1)+j];
 			if(other>0)
 			{
-				first+= (-1) * other * (*cond)[j]->returnMin();
+				tosum+= (-1) * other * (*cond)[j]->returnMin();
 			}else
 			{
-				second+= (-1) * other * (*cond)[j]->returnMax();
+				tosum+= (-1) * other * (*cond)[j]->returnMax();
 			}
 		}
 	}
-	product += (first + second);
+	product += tosum;
 	value = value * product;
 	cout<<value;
 	cout<<"\n-----\n";
@@ -37,6 +41,7 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value < (*cond)[pos]->returnMax() )
 		{
 			(*cond)[pos]->setMax(value);
+			(*cond)[pos]->showName();
 			cout<<"New max: ";
 			cout<<value;
 			cout<<"\n+++++\n";
@@ -51,6 +56,7 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value>(*cond)[pos]->returnMin())
 		{
 			(*cond)[pos]->setMin(value);
+			(*cond)[pos]->showName();
 			cout<<"New min: ";
 			cout<<value;
 			cout<<"\n+++++\n";
