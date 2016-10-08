@@ -4,13 +4,7 @@
 using namespace std;
 
 bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
-	//int currcoff = coeffEqu[row*numvar+pos];
-	cout<<"\nCURRENT ROW: ";
-	cout<<row;
 	int currcoeff = coeffEqu[row*(numvar+1)+pos];
-	cout<<" coeff:";
-	cout<<currcoeff;
-	cout<<"\n";
 	if(currcoeff==0)
 	{
 		return false;
@@ -34,17 +28,12 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	}
 	product += tosum;
 	value = value * product;
-	cout<<value;
-	cout<<"\n-----\n";
 	if(currcoeff>0)
 	{
 		if(value < (*cond)[pos]->returnMax() )
 		{
 			(*cond)[pos]->setMax(value);
 			(*cond)[pos]->showName();
-			cout<<"New max: ";
-			cout<<value;
-			cout<<"\n+++++\n";
 		}
 		else
 		{
@@ -57,9 +46,6 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		{
 			(*cond)[pos]->setMin(value);
 			(*cond)[pos]->showName();
-			cout<<"New min: ";
-			cout<<value;
-			cout<<"\n+++++\n";
 		}
 		else
 		{
@@ -72,19 +58,6 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
 	bool updated_t;
-	/*
-	while(updated)
-	{
-		for(int i=0; i< numrow; i++)
-		{
-			for(int j=0; j<numcol; j++)
-			{
-				cout<<coeffEqu[i*numcol+j];
-				cout<<"\n";
-			}
-		}
-		updated = false;
-	}*/
 	while(updated)
 	{
 		updated = false;
@@ -92,7 +65,6 @@ void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int nu
 		{
 			for(int j=0; j<numcol;j++)
 			{
-				//(*cond)[j]->showType();
 				updated_t = update(cond, numcol, coeffEqu, i, j);
 				if(updated_t)
 				{
