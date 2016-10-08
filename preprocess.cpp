@@ -3,8 +3,9 @@
 #include <vector>    
 using namespace std;
 
-Variable* boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int numrow, int numcol) {
+void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
+	/*
 	while(updated)
 	{
 		for(int i=0; i< numrow; i++)
@@ -16,14 +17,18 @@ Variable* boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, i
 			}
 		}
 		updated = false;
-	}
+	}*/
 	for(int i=0; i<numvar; i++)
 	{
-		(*cond)[i]->showType();
+		for(int j=0; j<numcol;j++)
+		{
+			(*cond)[j]->showType();
+			int currcoff = coeffEqu[i*numcol+j];
+			
+		}
 		
 		//**cond[i]->showType();
 	}
 	getchar();
-	return NULL;
 }
 
