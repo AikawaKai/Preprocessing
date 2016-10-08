@@ -4,12 +4,13 @@
 class Variable
 {
 	public:
-		std::string name;
-		std::string type = "generic var"; 
-		int coeff;
+		std::string name; 
 	void showName(){
-		std::cout<<coeff;
 		std::cout<<name;
+	}
+	
+	void showType(){
+		std::cout<<"generic";
 	}
 	
 };
@@ -20,7 +21,10 @@ class intVar: public Variable
 		int max;
 		int min;
 		int value;
-		std::string type = "intVar";
+	void showType(){
+		std::cout<<"int";
+	}
+	
 };
 
 class binVar : public Variable
@@ -28,7 +32,10 @@ class binVar : public Variable
 	public:
 		int max = 1;
 		int min = 0;
-		std::string type = "binVar";
+	void showType(){
+		std::cout<<"binary";
+	}
+	
 };
 
 class floatVar: public Variable
@@ -37,7 +44,10 @@ class floatVar: public Variable
 		float max;
 		float min;
 		float value;
-		std::string type = "floatVar";
+	void showType(){
+		std::cout<<"float";
+	}
+	
 };
 
 

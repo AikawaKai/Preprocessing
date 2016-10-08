@@ -1,8 +1,9 @@
 #include "type.h"
 #include <iostream>
+#include <vector>    
 using namespace std;
 
-Variable * boundsPreprocess(Variable cond[], int numvar, int *coeffEqu, int numrow, int numcol) {
+Variable* boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
 	while(updated)
 	{
@@ -18,7 +19,10 @@ Variable * boundsPreprocess(Variable cond[], int numvar, int *coeffEqu, int numr
 	}
 	for(int i=0; i<numvar; i++)
 	{
-		cout<<cond[i].name;
+		Variable *temp = (*cond)[i];
+		temp->showType();
+		temp->showName();
+		//**cond[i]->showType();
 	}
 	getchar();
 	return NULL;
