@@ -19,9 +19,8 @@ Variable* boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, i
 	}
 	for(int i=0; i<numvar; i++)
 	{
-		Variable *temp = (*cond)[i];
-		temp->showType();
-		temp->showName();
+		(*cond)[i]->showType();
+		
 		//**cond[i]->showType();
 	}
 	getchar();

@@ -9,7 +9,7 @@ class Variable
 		std::cout<<name;
 	}
 	
-	void showType(){
+	virtual void showType(){
 		std::cout<<"generic";
 	}
 	
@@ -21,7 +21,7 @@ class intVar: public Variable
 		int max;
 		int min;
 		int value;
-	void showType(){
+	virtual void showType(){
 		std::cout<<"int";
 	}
 	
@@ -32,7 +32,7 @@ class binVar : public Variable
 	public:
 		int max = 1;
 		int min = 0;
-	void showType(){
+	virtual void showType(){
 		std::cout<<"binary";
 	}
 	
@@ -44,7 +44,7 @@ class floatVar: public Variable
 		float max;
 		float min;
 		float value;
-	void showType(){
+	virtual void showType(){
 		std::cout<<"float";
 	}
 	

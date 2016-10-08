@@ -10,7 +10,7 @@ int main(){
 	floatVar* x1 = new floatVar();
 	floatVar* x2 = new floatVar();
 	floatVar* x3 = new floatVar();
-	floatVar* y4 = new floatVar();
+	intVar* y4 = new intVar();
 	intVar* y5 = new intVar();	
 	x1->name="X1";
 	x2->name="X2";
