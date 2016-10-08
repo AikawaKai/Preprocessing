@@ -3,6 +3,12 @@
 #include <vector>    
 using namespace std;
 
+bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
+	int currcoff = coeffEqu[row*numvar+pos];
+	cout<<currcoff;
+	return true;
+}
+
 void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
 	/*
@@ -18,12 +24,12 @@ void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int nu
 		}
 		updated = false;
 	}*/
-	for(int i=0; i<numvar; i++)
+	for(int i=0; i<numrow; i++)
 	{
 		for(int j=0; j<numcol;j++)
 		{
-			(*cond)[j]->showType();
-			int currcoff = coeffEqu[i*numcol+j];
+			//(*cond)[j]->showType();
+			updated = update(cond, numcol, coeffEqu, i, j);
 			
 		}
 		
