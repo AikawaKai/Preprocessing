@@ -13,6 +13,10 @@ class Variable
 		std::cout<<"generic";
 	}
 	
+	virtual int returnType(){
+		return 0;
+	}
+	
 };
 
 class intVar: public Variable
@@ -23,6 +27,9 @@ class intVar: public Variable
 		int value;
 	virtual void showType(){
 		std::cout<<"int";
+	}
+	virtual int returnType(){
+		return 1;
 	}
 	
 };
@@ -35,6 +42,9 @@ class binVar : public Variable
 	virtual void showType(){
 		std::cout<<"binary";
 	}
+	virtual int returnType(){
+		return 2;
+	}
 	
 };
 
@@ -46,6 +56,9 @@ class floatVar: public Variable
 		float value;
 	virtual void showType(){
 		std::cout<<"float";
+	}
+	virtual int returnType(){
+		return 3;
 	}
 	
 };
