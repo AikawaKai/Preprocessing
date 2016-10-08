@@ -4,8 +4,16 @@
 using namespace std;
 
 bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
-	int currcoff = coeffEqu[row*numvar+pos];
-	cout<<currcoff;
+	//int currcoff = coeffEqu[row*numvar+pos];
+	for(int j=0;j<numvar;j++)
+	{
+		if(j!=pos)
+		{
+			cout<<coeffEqu[row*numvar+j];;
+			cout<<" ";
+		}
+	}
+	cout<<"\n";
 	return true;
 }
 
