@@ -18,12 +18,18 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 			if(other>0)
 			{
 				first+= (-1) * other * (*cond)[j]->min;
+				cout<<(*cond)[j]->name+": ";
+				cout<<(*cond)[j]->min;
 			}else
 			{
 				second+= (-1) * other * (*cond)[j]->max;
+				cout<<(*cond)[j]->name+": ";
+				cout<<(*cond)[j]->max;
 			}
+			cout<<" ";
 		}
 	}
+	cout<<"\n";
 	product += (first + second);
 	value = value * product;
 	cout<<value;
