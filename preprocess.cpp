@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Variable * boundsPreprocess(Variable cond[], int *coeffEqu, int numrow, int numcol) {
+Variable * boundsPreprocess(Variable cond[], int numvar, int *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
 	while(updated)
 	{
@@ -15,6 +15,10 @@ Variable * boundsPreprocess(Variable cond[], int *coeffEqu, int numrow, int numc
 			}
 		}
 		updated = false;
+	}
+	for(int i=0; i<numvar; i++)
+	{
+		cout<<cond[i].name;
 	}
 	getchar();
 	return NULL;
