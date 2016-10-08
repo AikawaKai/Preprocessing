@@ -18,20 +18,32 @@ class Variable
 	virtual int returnType(){
 		return 0;
 	}
+	virtual float returnMin(){
+		return min;
+	}
+	virtual float returnMax(){
+		return max;
+	}
 	
 };
 
 class intVar: public Variable
 {
 	public:
-		int max;
-		int min;
-		int value;
+		float max;
+		float min;
+		float value;
 	virtual void showType(){
 		std::cout<<"int";
 	}
 	virtual int returnType(){
 		return 1;
+	}
+	virtual float returnMin(){
+		return min;
+	}
+	virtual float returnMax(){
+		return max;
 	}
 	
 };
@@ -39,13 +51,19 @@ class intVar: public Variable
 class binVar : public Variable
 {
 	public:
-		int max = 1;
-		int min = 0;
+		float max = 1;
+		float min = 0;
 	virtual void showType(){
 		std::cout<<"binary";
 	}
 	virtual int returnType(){
 		return 2;
+	}
+	virtual float returnMin(){
+		return min;
+	}
+	virtual float returnMax(){
+		return max;
 	}
 	
 };
@@ -61,6 +79,14 @@ class floatVar: public Variable
 	}
 	virtual int returnType(){
 		return 3;
+	}
+	
+	virtual float returnMin(){
+		return min;
+	}
+	
+	virtual float returnMax(){
+		return max;
 	}
 	
 };

@@ -17,14 +17,14 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 			int other = coeffEqu[row*numvar+j];
 			if(other>0)
 			{
-				first+= (-1) * other * (*cond)[j]->min;
+				//first+= (-1) * other * (*cond)[j]->min;
 				cout<<(*cond)[j]->name+": ";
-				cout<<(*cond)[j]->min;
+				cout<<(*cond)[j]->returnMin();
 			}else
 			{
-				second+= (-1) * other * (*cond)[j]->max;
+				//second+= (-1) * other * (*cond)[j]->max;
 				cout<<(*cond)[j]->name+": ";
-				cout<<(*cond)[j]->max;
+				cout<<(*cond)[j]->returnMax();
 			}
 			cout<<" ";
 		}
@@ -32,8 +32,8 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	cout<<"\n";
 	product += (first + second);
 	value = value * product;
-	cout<<value;
-	cout<<" ";
+	//cout<<value;
+	//cout<<" ";
 	return true;
 }
 
@@ -58,7 +58,6 @@ void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int nu
 		{
 			//(*cond)[j]->showType();
 			updated = update(cond, numcol, coeffEqu, i, j);
-			
 		}
 		
 		//**cond[i]->showType();
