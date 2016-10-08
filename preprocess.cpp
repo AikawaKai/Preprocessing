@@ -30,11 +30,16 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	}
 	product += (first + second);
 	value = value * product;
+	cout<<value;
+	cout<<"\n-----\n";
 	if(currcoeff>0)
 	{
 		if(value < (*cond)[pos]->returnMax() )
 		{
 			(*cond)[pos]->setMax(value);
+			cout<<"New max: ";
+			cout<<value;
+			cout<<"\n+++++\n";
 		}
 		else
 		{
@@ -43,9 +48,12 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	}
 	else
 	{
-		if(value>(*cond)[pos]->returnMax())
+		if(value>(*cond)[pos]->returnMin())
 		{
 			(*cond)[pos]->setMin(value);
+			cout<<"New min: ";
+			cout<<value;
+			cout<<"\n+++++\n";
 		}
 		else
 		{
