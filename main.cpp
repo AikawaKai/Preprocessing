@@ -37,7 +37,7 @@ int main(){
 	cond.push_back(y5);
 	int b1 = 13;
 	int b2 = -9;
-	int coeffEqu [2][5] = {{4, -3, -2, 1, 2}, {-3, 2, -1, 2, 3}};
+	int coeffEqu [2][6] = {{4, -3, -2, 1, 2, b1}, {-3, 2, -1, 2, 3, b2}};
 	boundsPreprocess(&cond, 5, (int *)coeffEqu, 2, 5);
 }
 

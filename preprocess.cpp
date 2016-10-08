@@ -5,15 +5,29 @@ using namespace std;
 
 bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
 	//int currcoff = coeffEqu[row*numvar+pos];
+	int currcoeff = coeffEqu[row*numvar+pos];
+	float value = 1/currcoeff;
+	float product = coeffEqu[row*numvar+(numvar+1)];
+	float first = 0;
+	float second = 0;
 	for(int j=0;j<numvar;j++)
 	{
 		if(j!=pos)
 		{
-			cout<<coeffEqu[row*numvar+j];;
-			cout<<" ";
+			int other = coeffEqu[row*numvar+j];
+			if(other>0)
+			{
+				first+= (-1) * other * (*cond)[j]->min;
+			}else
+			{
+				second+= (-1) * other * (*cond)[j]->max;
+			}
 		}
 	}
-	cout<<"\n";
+	product += (first + second);
+	value = value * product;
+	cout<<value;
+	cout<<" ";
 	return true;
 }
 

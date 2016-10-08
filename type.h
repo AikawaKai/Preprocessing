@@ -5,6 +5,8 @@ class Variable
 {
 	public:
 		std::string name; 
+		float min;
+		float max;
 	void showName(){
 		std::cout<<name;
 	}
