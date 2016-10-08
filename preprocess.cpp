@@ -33,7 +33,6 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value < (*cond)[pos]->returnMax() )
 		{
 			(*cond)[pos]->setMax(value);
-			(*cond)[pos]->showName();
 		}
 		else
 		{
@@ -45,7 +44,6 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value>(*cond)[pos]->returnMin())
 		{
 			(*cond)[pos]->setMin(value);
-			(*cond)[pos]->showName();
 		}
 		else
 		{
@@ -73,6 +71,5 @@ void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int nu
 			}
 		}
 	}
-	getchar();
 }
 
