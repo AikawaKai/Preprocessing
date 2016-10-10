@@ -90,10 +90,10 @@ class intVar: public Variable
 	
 };
 
-class binVar : public Variable
+class binVar : public intVar
 {
 	public:
-		binVar () : Variable ()
+		binVar () : intVar ()
  		{
   			min = 0;
   			max = 1;
