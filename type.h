@@ -17,6 +17,10 @@ class Variable
 		std::cout<<"generic";
 	}
 	
+	virtual float returnValue(){
+		return value;
+	}
+	
 	virtual int returnType(){
 		return 0;
 	}
