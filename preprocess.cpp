@@ -1,6 +1,7 @@
 #include "type.h"
 #include <iostream>
-#include <vector>    
+#include <vector>
+#include <math.h>
 using namespace std;
 
 bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
@@ -36,12 +37,17 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value < (*cond)[pos]->returnMax() )
 		{
 			check = (*cond)[pos]->setMax(value);
+			cout<<"aggiorno";
 			if(check)
 			{
 				/*
-				tmp_val = value*currcoeff;
+				cout<<"\nrow: ";
+				cout<<row;
+				cout<<"\ncurr b:";
+				tmp_val = ceil(value)*currcoeff;
 				coeffEqu[row*(numvar+1)+pos]=0;
 				b = coeffEqu[row*(numvar+1)+numvar];
+				cout<<b;
 				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;*/
 			}
 		}
@@ -55,12 +61,17 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value>(*cond)[pos]->returnMin())
 		{
 			check = (*cond)[pos]->setMin(value);
+			cout<<"aggiorno";
 			if(check)
 			{
 				/*
-				tmp_val = value*currcoeff;
+				cout<<"\nrow: ";
+				cout<<row;
+				cout<<"\ncurr b:";
+				tmp_val = floor(value)*currcoeff;
 				coeffEqu[row*(numvar+1)+pos]=0;
 				b = coeffEqu[row*(numvar+1)+numvar];
+				cout<<b;
 				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;*/
 			}
 		}
