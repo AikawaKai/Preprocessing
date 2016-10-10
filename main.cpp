@@ -7,6 +7,7 @@
 using namespace std;
 
 int main(){
+	//*FIRST EXAMPLE 
 	floatVar* x1 = new floatVar();
 	floatVar* x2 = new floatVar();
 	floatVar* x3 = new floatVar();
@@ -37,9 +38,10 @@ int main(){
 	cond.push_back(y5);
 	int b1 = 13;
 	int b2 = -9;
-	int coeffEqu [2][6] = {{4, -3, -2, 1, 2, b1}, {-3, 2, -1, 2, 3, b2}};
-	boundsPreprocess(&cond, 5, (int *)coeffEqu, 2, 5);
-	for(int i=0;i<5;i++)
+	int numvar = 5;
+	int coeffEqu [2][numvar+1] = {{4, -3, -2, 1, 2, b1}, {-3, 2, -1, 2, 3, b2}};
+	boundsPreprocess(&cond, numvar, (int *)coeffEqu, 2, numvar);
+	for(int i=0;i<numvar;i++)
 	{
 		cond[i]->showName();
 		cout<<"\n";
