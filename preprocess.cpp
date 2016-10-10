@@ -38,11 +38,11 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 			check = (*cond)[pos]->setMax(value);
 			if(check)
 			{
-				
+				/*
 				tmp_val = value*currcoeff;
 				coeffEqu[row*(numvar+1)+pos]=0;
 				b = coeffEqu[row*(numvar+1)+numvar];
-				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;
+				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;*/
 			}
 		}
 		else
@@ -57,10 +57,11 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 			check = (*cond)[pos]->setMin(value);
 			if(check)
 			{
+				/*
 				tmp_val = value*currcoeff;
 				coeffEqu[row*(numvar+1)+pos]=0;
 				b = coeffEqu[row*(numvar+1)+numvar];
-				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;
+				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;*/
 			}
 		}
 		else
