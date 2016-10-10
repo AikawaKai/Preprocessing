@@ -9,6 +9,7 @@ class Variable
 		float min;
 		float max;
 		float value;
+		bool fixed = false;
 	void showName(){
 		std::cout<<name;
 	}
@@ -31,12 +32,27 @@ class Variable
 		return max;
 	}
 	
-	virtual void setMin(float new_value){
+	bool void setMin(float new_value){
 		min = new_value;
+		if(min == max)
+		{
+			value = min;
+			fixed = true;
+			return true;
+		}
+		return false;
+
 	}
 	
-	virtual void setMax(float new_value){
+	bool void setMax(float new_value){
 		max = new_value;
+		if(max == min)
+		{
+			value = max;
+			fixed = true;
+			return true;
+		}
+		return false;
 	}
 	
 };
@@ -77,12 +93,6 @@ class binVar : public Variable
 	virtual int returnType(){
 		return 2;
 	}
-	virtual float returnMin(){
-		return min;
-	}
-	virtual float returnMax(){
-		return max;
-	}
 	
 	virtual void setMin(float new_value){
 		min = ceil(new_value);
@@ -101,22 +111,6 @@ class floatVar: public Variable
 	}
 	virtual int returnType(){
 		return 3;
-	}
-	
-	virtual float returnMin(){
-		return min;
-	}
-	
-	virtual float returnMax(){
-		return max;
-	}
-	
-	virtual void setMin(float new_value){
-		min = new_value;
-	}
-	
-	virtual void setMax(float new_value){
-		max = new_value;
 	}
 	
 };
