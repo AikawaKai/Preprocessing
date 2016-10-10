@@ -48,6 +48,12 @@ int main(){
 	binVar *y2 = new binVar();
 	binVar *y3 = new binVar();
 	binVar *y4 = new binVar();
+	y1->name = "Y1";
+	y2->name = "Y2";
+	y3->name = "Y3";
+	y4->name = "Y4";
+	cout<<y1->returnMin();
+	cout<<y1->returnMax();
 	Variable *lista[] = {y1, y2, y3, y4};
 	std::vector<Variable*> cond;
 	cond.insert(cond.begin(), lista, lista+4);
