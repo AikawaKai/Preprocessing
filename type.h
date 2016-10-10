@@ -8,6 +8,7 @@ class Variable
 		std::string name; 
 		float min;
 		float max;
+		float value;
 	void showName(){
 		std::cout<<name;
 	}
@@ -26,22 +27,18 @@ class Variable
 		return max;
 	}
 	
-	virtual void setMin(float value){
-		min = value;
+	virtual void setMin(float new_value){
+		min = new_value;
 	}
 	
-	virtual void setMax(float value){
-		max = value;
+	virtual void setMax(float new_value){
+		max = new_value;
 	}
 	
 };
 
 class intVar: public Variable
 {
-	public:
-		float max;
-		float min;
-		float value;
 	virtual void showType(){
 		std::cout<<"int";
 	}
@@ -55,12 +52,12 @@ class intVar: public Variable
 		return max;
 	}
 	
-	virtual void setMin(float value){
-		min = ceil(value);
+	virtual void setMin(float new_value){
+		min = ceil(new_value);
 	}
 	
 	virtual void setMax(float value){
-		max = floor(value);
+		max = floor(new_value);
 	}
 	
 };
@@ -83,22 +80,18 @@ class binVar : public Variable
 		return max;
 	}
 	
-	virtual void setMin(float value){
-		min = ceil(value);
+	virtual void setMin(float new_value){
+		min = ceil(new_value);
 	}
 	
-	virtual void setMax(float value){
-		max = floor(value);
+	virtual void setMax(float new_value){
+		max = floor(new_value);
 	}
 	
 };
 
 class floatVar: public Variable
 {
-	public:
-		float max;
-		float min;
-		float value;
 	virtual void showType(){
 		std::cout<<"float";
 	}
@@ -114,12 +107,12 @@ class floatVar: public Variable
 		return max;
 	}
 	
-	virtual void setMin(float value){
-		min = value;
+	virtual void setMin(float new_value){
+		min = new_value;
 	}
 	
-	virtual void setMax(float value){
-		max = value;
+	virtual void setMax(float new_value){
+		max = new_value;
 	}
 	
 };
