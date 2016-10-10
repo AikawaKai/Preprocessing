@@ -67,23 +67,42 @@ class intVar: public Variable
 	}
 	
 	virtual bool setMin(float new_value){
-		min = ceil(new_value);
-		if(min == max)
+		if(ceil(new_value)>max)
 		{
+			min = max;
 			value = min;
 			fixed = true;
 			return true;
+		}
+		else
+		{
+			min = ceil(new_value);
+			if(min == max)
+			{
+				value = min;
+				fixed = true;
+				return true;
+			}
 		}
 		return false;
 	}
 	
 	virtual bool setMax(float new_value){
-		max = floor(new_value);
-		if(max == min)
+		if(floor(new_value)<min)
 		{
+			max = min;
 			value = min;
 			fixed = true;
 			return true;
+		}else
+		{
+			max = floor(new_value);
+			if(max == min)
+			{
+				value = min;
+				fixed = true;
+				return true;
+			}
 		}
 		return false;
 	}

@@ -4,12 +4,15 @@
 using namespace std;
 
 bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
-	int currcoeff = coeffEqu[row*(numvar+1)+pos];
+	float currcoeff = coeffEqu[row*(numvar+1)+pos];
+	float tmp_val;
+	float b;
+	bool check;
 	if(currcoeff==0)
 	{
 		return false;
 	}
-	float value = 1/(float)currcoeff;
+	float value = 1/currcoeff;
 	float product = coeffEqu[row*(numvar+1)+numvar];
 	float tosum = 0;
 	for(int j=0;j<numvar;j++)
@@ -32,7 +35,15 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	{
 		if(value < (*cond)[pos]->returnMax() )
 		{
-			(*cond)[pos]->setMax(value);
+			check = (*cond)[pos]->setMax(value);
+			if(check)
+			{
+				
+				tmp_val = value*currcoeff;
+				coeffEqu[row*(numvar+1)+pos]=0;
+				b = coeffEqu[row*(numvar+1)+numvar];
+				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;
+			}
 		}
 		else
 		{
@@ -43,7 +54,14 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	{
 		if(value>(*cond)[pos]->returnMin())
 		{
-			(*cond)[pos]->setMin(value);
+			check = (*cond)[pos]->setMin(value);
+			if(check)
+			{
+				tmp_val = value*currcoeff;
+				coeffEqu[row*(numvar+1)+pos]=0;
+				b = coeffEqu[row*(numvar+1)+numvar];
+				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;
+			}
 		}
 		else
 		{
