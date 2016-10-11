@@ -43,7 +43,7 @@ void print_constraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, 
 			}
 		}
 		cout<<"<=";
-		cout<<coeffEqu[i*(numcol+1)+numcol];
+		cout<<coeffEqu[i*(numcol+1)+numcol]-to_sum;
 		cout<<"\n";
 	}
 	cout<<"\n";
