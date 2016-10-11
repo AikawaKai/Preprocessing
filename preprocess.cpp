@@ -57,7 +57,7 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	return true;
 }
 
-void boundsPreprocess(vector<Variable*> *cond, int numvar, int *coeffEqu, int numrow, int numcol) {
+void boundsPreprocess(vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
 	bool updated_t;
 	while(updated)

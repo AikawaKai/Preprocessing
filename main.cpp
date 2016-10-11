@@ -65,7 +65,7 @@ int main(){
 	print_constraints(&cond, (int *)coeffEqu, numrow, numcol);
 	
 	cout<<"\n[After update]\n";
-	boundsPreprocess(&cond, numcol, (int *)coeffEqu, numrow, numcol);
+	boundsPreprocess(&cond, (int *)coeffEqu, numrow, numcol);
 	print_constraints(&cond, (int *)coeffEqu, numrow, numcol);
 }
 
