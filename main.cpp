@@ -95,6 +95,7 @@ int main(){
 	Variable *lista[] = {x1, x2, x3, x4};
 	cond.insert(cond.begin(),lista, lista+4);
 	print_constraints(&cond, (int*)coeffEqu, numrow, numcol);
+	constraintsPreprocess(&cond, (int*)coeffEqu, numrow, numcol);
 }
 
 

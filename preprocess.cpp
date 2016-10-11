@@ -81,11 +81,38 @@ void constraintsPreprocess(std::vector<Variable*> *cond, int *coeffEqu, int numr
 {
 	float U;
 	float L;
+	float currcoeff;
+	float bi;
 	for(int i=0; i<numrow;i++)
 	{
 		U = 0;
 		L = 0;
 		for(int j=0; j<numcol;j++)
+		{
+			currcoeff = coeffEqu[i*(numcol+1)+j];
+			if(currcoeff>0)
+			{
+				U+=(currcoeff*(*cond)[j]->max);
+				L+=(currcoeff*(*cond)[j]->min);
+			}else if(currcoeff<0)
+			{
+				U+=(currcoeff*(*cond)[j]->min);
+				L+=(currcoeff*(*cond)[j]->max);
+			}
+		}
+		bi = coeffEqu[i*(numcol+1)+numcol];
+		if(L>bi)
+		{
+			cout<<"Constraint ";
+			cout<<i;
+			cout<<" is infeasable";
+			break;
+		}else if(bi>=U)
+		{
+			cout<<"Constraint ";
+			cout<<i;
+			cout<<" is redundant";
+		}else
 		{
 			
 		}
