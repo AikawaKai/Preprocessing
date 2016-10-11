@@ -37,18 +37,6 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value < (*cond)[pos]->returnMax() )
 		{
 			check = (*cond)[pos]->setMax(value);
-			if(check)
-			{
-				/*
-				cout<<"\nrow: ";
-				cout<<row;
-				cout<<"\ncurr b:";
-				tmp_val = ceil(value)*currcoeff;
-				coeffEqu[row*(numvar+1)+pos]=0;
-				b = coeffEqu[row*(numvar+1)+numvar];
-				cout<<b;
-				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;*/
-			}
 		}
 		else
 		{
@@ -60,18 +48,6 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value>(*cond)[pos]->returnMin())
 		{
 			check = (*cond)[pos]->setMin(value);
-			if(check)
-			{
-				/*
-				cout<<"\nrow: ";
-				cout<<row;
-				cout<<"\ncurr b:";
-				tmp_val = floor(value)*currcoeff;
-				coeffEqu[row*(numvar+1)+pos]=0;
-				b = coeffEqu[row*(numvar+1)+numvar];
-				cout<<b;
-				coeffEqu[row*(numvar+1)+numvar] = b + tmp_val;*/
-			}
 		}
 		else
 		{
