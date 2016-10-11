@@ -77,3 +77,8 @@ void boundsPreprocess(vector<Variable*> *cond, int *coeffEqu, int numrow, int nu
 	}
 }
 
+void constraintsPreprocess(std::vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol)
+{
+	
+}
+
