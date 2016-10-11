@@ -79,6 +79,16 @@ void boundsPreprocess(vector<Variable*> *cond, int *coeffEqu, int numrow, int nu
 
 void constraintsPreprocess(std::vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol)
 {
-	
+	float U;
+	float L;
+	for(int i=0; i<numrow;i++)
+	{
+		U = 0;
+		L = 0;
+		for(int j=0; j<numcol;j++)
+		{
+			
+		}
+	}
 }
 
