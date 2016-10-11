@@ -37,7 +37,6 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value < (*cond)[pos]->returnMax() )
 		{
 			check = (*cond)[pos]->setMax(value);
-			cout<<"aggiorno";
 			if(check)
 			{
 				/*
