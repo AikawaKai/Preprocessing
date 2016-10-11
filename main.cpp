@@ -42,9 +42,12 @@ int main(){
 	int numrow = 2;
 	int numcol = 5;
 	int coeffEqu [numrow][numcol+1] = {{4, -3, -2, 1, 2, b1}, {-3, 2, -1, 2, 3, b2}};
-	cout<<"Before update:\n";
+	cout<<"[Before update]\n";
 	print_constraints(&cond, (int *)coeffEqu, numrow, numcol);
+	
+	cout<<"\n[After update]\n";
 	boundsPreprocess(&cond, numcol, (int *)coeffEqu, numrow, numcol);
+	print_constraints(&cond, (int *)coeffEqu, numrow, numcol);
 	
 	/*SECOND EXAMPLE: BINARY VARIABLE
 	binVar *y1 = new binVar();

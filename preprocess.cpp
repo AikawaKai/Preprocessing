@@ -60,7 +60,6 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 		if(value>(*cond)[pos]->returnMin())
 		{
 			check = (*cond)[pos]->setMin(value);
-			cout<<"aggiorno";
 			if(check)
 			{
 				/*
