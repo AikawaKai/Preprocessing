@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(){
-	/*FIRST EXAMPLE MIXED INTEGER VARIABLE
+	/*FIRST EXAMPLE MIXED INTEGER VARIABLE*/
 	floatVar* x1 = new floatVar();
 	floatVar* x2 = new floatVar();
 	floatVar* x3 = new floatVar();
@@ -40,10 +40,9 @@ int main(){
 	int b2 = -9;
 	int numvar = 5;
 	int coeffEqu [2][numvar+1] = {{4, -3, -2, 1, 2, b1}, {-3, 2, -1, 2, 3, b2}};
-	boundsPreprocess(&cond, numvar, (int *)coeffEqu, 2, numvar); */
+	boundsPreprocess(&cond, numvar, (int *)coeffEqu, 2, numvar);
 	
-	//*SECOND EXAMPLE: BINARY VARIABLE
-	
+	/*SECOND EXAMPLE: BINARY VARIABLE
 	binVar *y1 = new binVar();
 	binVar *y2 = new binVar();
 	binVar *y3 = new binVar();
@@ -58,7 +57,7 @@ int main(){
 	int b1 = 0;
 	int b2 = -5;
 	int numvar = 4;
-	int coeffEqu [2][numvar+1]={{8, 11, -9, 4, b1}, {1, -4, -6, 1, b2}};
+	int coeffEqu [2][numvar+1]={{8, 11, -9, 4, b1}, {1, -4, -6, 1, b2}};*/
 	boundsPreprocess(&cond, numvar, (int *)coeffEqu, 2, numvar);
 	for(int i=0;i<numvar;i++)
 	{
