@@ -24,7 +24,7 @@ void print_constraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, 
 					cout<<")";
 				}else
 				{
-					to_sum+=(*cond)[j]->value;
+					to_sum+=(*cond)[j]->value*coeff;
 				}
 				
 			}else if(coeff>0)
@@ -38,7 +38,7 @@ void print_constraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, 
 					cout<<")";
 				}else
 				{
-					to_sum+=(*cond)[j]->value;
+					to_sum+=(*cond)[j]->value*coeff;
 				}
 			}
 		}
@@ -55,6 +55,13 @@ void print_constraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, 
 		(*cond)[j]->showName();
 		cout<<")<=";
 		cout<<(*cond)[j]->max;
+		cout<<" ";
+		(*cond)[j]->showType();
+		if((*cond)[j]->fixed)
+		{
+			cout<<" fixed:";
+			cout<<(*cond)[j]->value;
+		}
 		cout<<"\n";
 	}
 }
