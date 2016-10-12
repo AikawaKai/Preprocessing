@@ -9,7 +9,7 @@ class Variable
 		std::string name; 
 		float min;
 		float max;
-		float value;
+		float value = 0;
 		bool fixed = false;
 	
 	Variable(string name_, float min_, float max_)
@@ -19,6 +19,9 @@ class Variable
 		max = max_;
 	}
 	
+	~Variable(){
+	}
+
 	void showName(){
 		std::cout<<name;
 	}

@@ -25,6 +25,10 @@ int main(){
 	row = constraintsPreprocess(&cond, (float*)coeffEqu, row, col);
 	cout<<"\n";
 	printConstraints(&cond, (float*)coeffEqu, row, col);
+	delete x1;
+	delete x2;
+	delete x3;
+	delete x4;
 }
 
 
