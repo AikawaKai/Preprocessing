@@ -1,1 +1,1 @@
-void printConstraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol);
+void printConstraints(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol);

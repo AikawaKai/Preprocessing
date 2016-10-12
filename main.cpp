@@ -21,7 +21,9 @@ int main(){
 	int row = 3;
 	int col = 4;
 	float coeffEqu[row][col+1] = {{1, 1, 1, -2, b1}, {-1, -3, 2, -1, b2}, {-1, 1, 0, 1, b3}};
-	printConstraints(&cond, (int*)coeffEqu,row,col);
+	printConstraints(&cond, (float*)coeffEqu,row,col);
+	constraintsPreprocess(&cond, (float*)coeffEqu, row, col);
+	printConstraints(&cond, (float*)coeffEqu,row,col);
 }
 
 

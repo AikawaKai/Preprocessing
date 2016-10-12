@@ -4,7 +4,7 @@
 #include <math.h>
 using namespace std;
 
-bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos){
+bool update(vector<Variable*> *cond, int numvar, float *coeffEqu, int row, int pos){
 	float currcoeff = coeffEqu[row*(numvar+1)+pos];
 	float tmp_val;
 	float b;
@@ -57,7 +57,7 @@ bool update(vector<Variable*> *cond, int numvar, int *coeffEqu, int row, int pos
 	return true;
 }
 
-void boundsPreprocess(vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol) {
+void boundsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
 	bool updated_t;
 	while(updated)
@@ -77,15 +77,15 @@ void boundsPreprocess(vector<Variable*> *cond, int *coeffEqu, int numrow, int nu
 	}
 }
 
-void deleteConstraint(int *coeffEqu, int i, int numcol)
+void deleteConstraint(float *coeffEqu, int i, int numcol)
 {
-	for(int j=0; j<numcol;j++)
+	for(int j=0; j<numcol+1;j++)
 	{
 		coeffEqu[i*(numcol+1)+j]=0;
 	}
 }
 
-void constraintsPreprocess(std::vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol)
+void constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
 {
 	float U;
 	float L;

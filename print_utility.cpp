@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-void printConstraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol)
+void printConstraints(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
 {
 	float coeff;
 	float to_sum;
@@ -18,8 +18,7 @@ void printConstraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, i
 			{
 				if(!(*cond)[j]->fixed)
 				{
-					cout<<coeff;
-					cout<<"(";
+					cout<<coeff<<"(";
 					(*cond)[j]->showName();
 					cout<<")";
 				}else
@@ -31,9 +30,7 @@ void printConstraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, i
 			{
 				if(!(*cond)[j]->fixed)
 				{
-					cout<<"+";
-					cout<<coeff;
-					cout<<"(";
+					cout<<"+"<<coeff<<"(";
 					(*cond)[j]->showName();
 					cout<<")";
 				}else
@@ -42,25 +39,19 @@ void printConstraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, i
 				}
 			}
 		}
-		cout<<"<=";
-		cout<<coeffEqu[i*(numcol+1)+numcol]-to_sum;
-		cout<<"\n";
+		cout<<"<="<<coeffEqu[i*(numcol+1)+numcol]-to_sum<<"\n";
 	}
 	cout<<"\n";
 	cout<<"Variables:\n";
 	for(int j=0;j<numcol;j++)
 	{
-		cout<<(*cond)[j]->min;
-		cout<<"<=(";
+		cout<<(*cond)[j]->min<<"<=(";
 		(*cond)[j]->showName();
-		cout<<")<=";
-		cout<<(*cond)[j]->max;
-		cout<<" ";
+		cout<<")<="<<(*cond)[j]->max<<" ";
 		(*cond)[j]->showType();
 		if((*cond)[j]->fixed)
 		{
-			cout<<" fixed:";
-			cout<<(*cond)[j]->value;
+			cout<<" fixed:"<<(*cond)[j]->value;
 		}
 		cout<<"\n";
 	}
