@@ -77,8 +77,8 @@ void boundsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, int 
 
 void deleteConstraint(float *coeffEqu, int i, int numrow, int numcol)
 {
-	float newCoeffEqu[(numrow-1)*(numcol+1)] = {};
-	for(int k=0;k<numrow;k++)
+	float newCoeffEqu[(numrow-1)*(numcol+1)];
+	for(int k=0;k<numrow-1;k++)
 	{
 		for(int j=0; j<numcol+1;j++)
 		{
