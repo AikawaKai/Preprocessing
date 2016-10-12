@@ -111,15 +111,11 @@ void constraintsPreprocess(std::vector<Variable*> *cond, int *coeffEqu, int numr
 		bi = coeffEqu[i*(numcol+1)+numcol];
 		if(L>bi)
 		{
-			cout<<"Constraint ";
-			cout<<i;
-			cout<<" is infeasable";
+			cout<<"Constraint "<<i<<" is infeasable";
 			break;
 		}else if(bi>=U)
 		{
-			cout<<"Constraint ";
-			cout<<i;
-			cout<<" is redundant";
+			cout<<"Constraint "<<i<<" is redundant";
 			deleteConstraint(coeffEqu, i, numcol);
 		}else
 		{
