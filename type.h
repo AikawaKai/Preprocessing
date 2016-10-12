@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <math.h>
+using namespace std;
 
 class Variable
 {
@@ -10,6 +11,14 @@ class Variable
 		float max;
 		float value;
 		bool fixed = false;
+	
+	Variable(string name_, float min_, float max_)
+	{
+		name = name_;
+		min = min_;
+		max = max_;
+	}
+	
 	void showName(){
 		std::cout<<name;
 	}
@@ -59,6 +68,8 @@ class Variable
 
 class intVar: public Variable
 {	
+	public:
+		intVar(string name_, float min_, float max_): Variable(name_, min_, max_){}
 	virtual void showType(){
 		std::cout<<"int";
 	}
@@ -112,12 +123,7 @@ class intVar: public Variable
 class binVar : public intVar
 {
 	public:
-		binVar () : intVar ()
- 		{
-  			min = 0;
-  			max = 1;
-		}
-		
+		binVar (string name_) : intVar (name_, 1, 1){}
 	virtual void showType(){
 		std::cout<<"binary";
 	}
@@ -129,6 +135,8 @@ class binVar : public intVar
 
 class floatVar: public Variable
 {
+	public:
+		floatVar(string name_, float min_, float max_): Variable(name_, min_, max_){}
 	virtual void showType(){
 		std::cout<<"float";
 	}
