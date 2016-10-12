@@ -23,6 +23,7 @@ int main(){
 	float coeffEqu[row][col+1] = {{1, 1, 1, -2, b1}, {-1, -3, 2, -1, b2}, {-1, 1, 0, 1, b3}};
 	printConstraints(&cond, (float*)coeffEqu,row,col);
 	constraintsPreprocess(&cond, (float*)coeffEqu, row, col);
+	cout<<"\n";
 	printConstraints(&cond, (float*)coeffEqu,row,col);
 }
 
