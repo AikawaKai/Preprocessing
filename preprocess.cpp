@@ -6,7 +6,6 @@ using namespace std;
 
 bool update(vector<Variable*> *cond, int numvar, float *coeffEqu, int row, int pos){
 	float currcoeff = coeffEqu[row*(numvar+1)+pos];
-	float b;
 	bool check;
 	if(currcoeff==0)
 	{
