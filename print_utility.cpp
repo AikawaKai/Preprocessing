@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-void print_constraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol)
+void printConstraints(std::vector<Variable*> *cond, int *coeffEqu, int numrow, int numcol)
 {
 	float coeff;
 	float to_sum;
