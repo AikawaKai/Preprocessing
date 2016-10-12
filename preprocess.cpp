@@ -6,13 +6,11 @@ using namespace std;
 
 bool update(vector<Variable*> *cond, int numvar, float *coeffEqu, int row, int pos){
 	float currcoeff = coeffEqu[row*(numvar+1)+pos];
-	float tmp_val;
 	float b;
 	bool check;
 	if(currcoeff==0)
 	{
 		return false;
-		cout<<"here";
 	}
 	float value = 1/currcoeff;
 	float product = coeffEqu[row*(numvar+1)+numvar];
