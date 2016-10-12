@@ -123,7 +123,7 @@ class intVar: public Variable
 class binVar : public intVar
 {
 	public:
-		binVar (string name_) : intVar (name_, 1, 1){}
+		binVar (string name_) : intVar (name_, 0, 1){}
 	virtual void showType(){
 		std::cout<<"binary";
 	}

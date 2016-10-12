@@ -12,6 +12,7 @@ bool update(vector<Variable*> *cond, int numvar, float *coeffEqu, int row, int p
 	if(currcoeff==0)
 	{
 		return false;
+		cout<<"here";
 	}
 	float value = 1/currcoeff;
 	float product = coeffEqu[row*(numvar+1)+numvar];
