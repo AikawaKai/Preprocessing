@@ -77,15 +77,33 @@ void boundsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, int 
 	}
 }
 
-void deleteConstraint(float *coeffEqu, int i, int numcol)
+void deleteConstraint(float *coeffEqu, int i, int &numrow, int &numcol)
 {
-	for(int j=0; j<numcol+1;j++)
+	float *newCoeffEqu = new float[(numrow-1)*(numcol+1)];
+	for(int k=0;k<numrow;k++)
+		for(int j=0; j<numcol+1;j++)
+		{
+			if(k<i)
+			{
+				newCoeffEqu[k*(numcol+1)+j]=coeffEqu[k*(numcol+1)+j];
+			}
+			else
+			{
+				newCoeffEqu[k*(numcol+1)+j]=coeffEqu[(k+1)*(numcol+1)+j];
+			}
+		}
+	numrow-=1;
+	for(int k=0; k<numrow;k++)
 	{
-		coeffEqu[i*(numcol+1)+j]=0;
+		for(int j=0; j<numcol+1;j++)
+		{
+			coeffEqu[k*(numcol+1)+j]=newCoeffEqu[k*(numcol+1)+j];
+		}
 	}
+	delete []newCoeffEqu;
 }
 
-void constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
+void constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int &numrow, int &numcol)
 {
 	float U;
 	float L;
@@ -116,7 +134,7 @@ void constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int nu
 		}else if(bi>=U)
 		{
 			cout<<"Constraint "<<i<<" is redundant";
-			deleteConstraint(coeffEqu, i, numcol);
+			deleteConstraint(coeffEqu, i, numrow, numcol);
 		}else
 		{
 			

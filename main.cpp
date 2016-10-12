@@ -24,7 +24,7 @@ int main(){
 	printConstraints(&cond, (float*)coeffEqu,row,col);
 	constraintsPreprocess(&cond, (float*)coeffEqu, row, col);
 	cout<<"\n";
-	printConstraints(&cond, (float*)coeffEqu,row,col);
+	printConstraints(&cond, (float*)coeffEqu, row, col);
 }
 
 
