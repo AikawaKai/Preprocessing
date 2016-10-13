@@ -149,7 +149,7 @@ int constraintsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, 
 			break;
 		}else if(bi>=U)
 		{
-			cout<<"Constraint "<<i<<" is redundant";
+			cout<<"Constraint "<<i<<" is redundant"<<endl;
 			deleteConstraint(coeffEqu, i, newrow, numcol);
 			newrow = constraintsPreprocess(cond, coeffEqu, newrow-1, numcol);
 			return newrow;
