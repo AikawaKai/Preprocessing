@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include <math.h>
-using namespace std;
+#include <vector>
 
 class Variable
 {
@@ -12,7 +12,7 @@ class Variable
 		float value = 0;
 		bool fixed = false;
 	
-	Variable(string name_, float min_, float max_)
+	Variable(std::string name_, float min_, float max_)
 	{
 		name = name_;
 		min = min_;
@@ -23,11 +23,11 @@ class Variable
 	}
 
 	void showName(){
-		cout<<name;
+		std::cout<<name;
 	}
 	
 	virtual void showType(){
-		cout<<"generic";
+		std::cout<<"generic";
 	}
 	
 	virtual void setValue(float value_){
@@ -77,7 +77,7 @@ class Variable
 class intVar: public Variable
 {	
 	public:
-		intVar(string name_, float min_, float max_): Variable(name_, min_, max_){}
+		intVar(std::string name_, float min_, float max_): Variable(name_, min_, max_){}
 	virtual void showType(){
 		std::cout<<"int";
 	}
@@ -131,7 +131,7 @@ class intVar: public Variable
 class binVar : public intVar
 {
 	public:
-		binVar (string name_) : intVar (name_, 0, 1){}
+		binVar (std::string name_) : intVar (name_, 0, 1){}
 	virtual void showType(){
 		std::cout<<"binary";
 	}
@@ -144,7 +144,7 @@ class binVar : public intVar
 class floatVar: public Variable
 {
 	public:
-		floatVar(string name_, float min_, float max_): Variable(name_, min_, max_){}
+		floatVar(std::string name_, float min_, float max_): Variable(name_, min_, max_){}
 	virtual void showType(){
 		std::cout<<"float";
 	}
