@@ -166,3 +166,6 @@ int constraintsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, 
 	return newrow;
 }
 
+void coefficientsReduction(float *coeffEqu, int numrow, int numcol){
+	
+}

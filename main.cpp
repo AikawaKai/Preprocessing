@@ -8,20 +8,20 @@
 using namespace std;
 
 int main(){
-	binVar *y1 = new binVar("y1");
-	binVar *y2 = new binVar("y2");
-	binVar *y3 = new binVar("y3");
-	vector<Variable*> cond;
-	Variable *list[3]= {y1, y2, y3};
-	cond.insert(cond.begin(), list, list+3);
-	float b1 = 7;
-	float b2 = 3;
-	int numrow = 2;
-	int numcol = 3;
-	float coeffEqu[numrow][numcol+1]={{2, 1, 3, b1},{3, -2, -1, b2}};
-	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
-	numrow = constraintsPreprocess(&cond, (float*)coeffEqu, numrow, numcol);
-	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
+	floatVar *x1 = new floatVar("x1" ,1 , 2);
+	floatVar *x2 = new floatVar("x2" ,1 , 2);
+	floatVar *x3 = new floatVar("x3" ,1 , 2);
+	floatVar *x4 = new floatVar("x4" ,1 , 2);
+	floatVar *x5 = new floatVar("x5" ,1 , 2);
+	floatVar *x6 = new floatVar("x6" ,1 , 2);
+	Variable *list[6] = {x1, x2, x3, x4, x5, x6};
+	vector<Variable*>cond;
+	cond.insert(cond.begin(), list, list+6);
+	int numrow;
+	int numcol;
+	float coeffEqu[numrow][numcol+1]={6, 3, -5, 2, 7, -4, 15};
+	coefficientsReduction((float*)coeffEqu, numrow, numcol);
+	
 }
 
 
