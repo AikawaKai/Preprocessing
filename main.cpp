@@ -20,8 +20,9 @@ int main(){
 	int numrow=1;
 	int numcol=6;
 	float coeffEqu[numrow][numcol+1]={6, 3, -5, 2, 7, -4, 15};
+	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
 	coefficientsReduction((float*)coeffEqu, numrow, numcol);
-	
+	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
 }
 
 

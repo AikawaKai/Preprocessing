@@ -169,7 +169,8 @@ int constraintsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, 
 
 void coeffRed(float *coeffEqu, int i, int numcol)
 {
-	float tot=0;
+	float M=0;
+	float diff = 0;
 	int index[numcol];
 	for(int j=0;j<numcol;j++)
 	{
@@ -180,19 +181,45 @@ void coeffRed(float *coeffEqu, int i, int numcol)
 		float currCoeff = coeffEqu[i*(numcol+1)+j];
 		if(currCoeff>0)
 		{
-			tot+=currCoeff;
+			M+=currCoeff;
 		}
 	}
-	tot = tot - coeffEqu[i*(numcol+1)+numcol];
+	diff = M - coeffEqu[i*(numcol+1)+numcol];
 	for(int j=0; j<numcol;j++)
 	{
-		if(abs(coeffEqu[i*(numcol+1)+j])>tot)
+		if(abs(coeffEqu[i*(numcol+1)+j])>diff)
 		{
 			index[j]=1;
 			cout<<j<<" ";
 		}
 	}
 	cout<<endl;
+	int indexes = 0;
+	for(int j=0;j<numcol;j++)
+	{
+		indexes+=index[j];
+	}
+	if(indexes>0)
+	{
+		for(int j=0;j<numcol;j++)
+		{
+			if(index[j]==1)
+			{
+				if(coeffEqu[i*(numcol+1)+j]>0)
+				{
+					float a_ = coeffEqu[i*(numcol+1)+j];
+					coeffEqu[i*(numcol+1)+j] = diff;
+					coeffEqu[i*(numcol+1)+numcol] = M - a_;
+					
+				}else
+				{
+					coeffEqu[i*(numcol+1)+j] = coeffEqu[i*(numcol+1)+numcol]-M;
+				}
+			}
+		}
+		coeffRed(coeffEqu, i, numcol);
+	}
+	
 }
 
 void coefficientsReduction(float *coeffEqu, int numrow, int numcol){
