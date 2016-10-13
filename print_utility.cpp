@@ -3,7 +3,20 @@
 #include <vector>
 using namespace std;
 
-void printConstraints(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
+bool checkRow(vector<Variable*> *cond, float *coeffEqu, int i, int numcol)
+{
+	bool check = false;
+	for(int j=0; j<numcol;j++)
+	{
+		if(!(*cond)[j]->fixed && coeffEqu[i*(numcol+1)+j]!=0)
+		{
+			return true;
+		}
+	}
+	return check;
+}
+
+void printConstraints(vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
 {
 	float coeff;
 	float to_sum;
@@ -11,35 +24,39 @@ void printConstraints(std::vector<Variable*> *cond, float *coeffEqu, int numrow,
 	for(int i=0;i<numrow;i++)
 	{
 		to_sum = 0;
-		for(int j=0;j<numcol;j++)
+		if(checkRow(cond, coeffEqu, i, numcol))
 		{
-			coeff = coeffEqu[i*(numcol+1)+j];
-			if(coeff<0)
+			for(int j=0;j<numcol;j++)
 			{
-				if(!(*cond)[j]->fixed)
+				coeff = coeffEqu[i*(numcol+1)+j];
+				if(coeff<0)
 				{
-					cout<<coeff<<"(";
-					(*cond)[j]->showName();
-					cout<<")";
-				}else
+					if(!(*cond)[j]->fixed)
+					{
+						cout<<coeff<<"(";
+						(*cond)[j]->showName();
+						cout<<")";
+					}else
+					{
+						to_sum+=(*cond)[j]->value*coeff;
+					}
+					
+				}else if(coeff>0)
 				{
-					to_sum+=(*cond)[j]->value*coeff;
-				}
-				
-			}else if(coeff>0)
-			{
-				if(!(*cond)[j]->fixed)
-				{
-					cout<<"+"<<coeff<<"(";
-					(*cond)[j]->showName();
-					cout<<")";
-				}else
-				{
-					to_sum+=(*cond)[j]->value*coeff;
+					if(!(*cond)[j]->fixed)
+					{
+						cout<<"+"<<coeff<<"(";
+						(*cond)[j]->showName();
+						cout<<")";
+					}else
+					{
+						to_sum+=(*cond)[j]->value*coeff;
+					}
 				}
 			}
-		}
 		cout<<"<="<<coeffEqu[i*(numcol+1)+numcol]-to_sum<<"\n";
+		}
+		
 	}
 	cout<<"\n";
 	cout<<"Variables:\n";
