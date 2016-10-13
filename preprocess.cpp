@@ -102,7 +102,22 @@ void deleteConstraint(float *coeffEqu, int i, int numrow, int numcol)
 	}
 }
 
-int constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
+void fixingVariables(vector<Variable*> *cond, float *coeffEqu, int numcol)
+{
+	for(int i=0;i<numcol;i++)
+	{
+		if(coeffEqu[i]>0)
+		{
+			(*cond)[i]->setValue((*cond)[i]->min);
+		}else if(coeffEqu[i]<0)
+		{
+			(*cond)[i]->setValue((*cond)[i]->max);
+		}
+	}
+	
+}
+
+int constraintsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
 {
 	float U;
 	float L;
@@ -140,7 +155,12 @@ int constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int num
 			return newrow;
 		}else if(bi==L)
 		{
-			
+			float coeffCurr[numcol];
+			for(int k=0;k<numcol+1;k++)
+			{
+				coeffCurr[k]=coeffEqu[i*(numcol+1)+k];
+			}
+			fixingVariables(cond, coeffCurr, numcol);
 		}
 	}
 	return newrow;

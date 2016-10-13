@@ -23,11 +23,16 @@ class Variable
 	}
 
 	void showName(){
-		std::cout<<name;
+		cout<<name;
 	}
 	
 	virtual void showType(){
-		std::cout<<"generic";
+		cout<<"generic";
+	}
+	
+	virtual void setValue(float value_){
+		value = value_;
+		fixed = true;
 	}
 	
 	virtual float returnValue(){
