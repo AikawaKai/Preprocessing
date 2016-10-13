@@ -136,8 +136,9 @@ int constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int num
 		{
 			cout<<"Constraint "<<i<<" is redundant";
 			deleteConstraint(coeffEqu, i, newrow, numcol);
-			newrow-=1;
-		}else
+			newrow = constraintsPreprocess(cond, coeffEqu, newrow-1, numcol);
+			return newrow;
+		}else if(bi==L)
 		{
 			
 		}
