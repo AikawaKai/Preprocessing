@@ -1,5 +1,6 @@
 #include "type.h"
 #include <iostream>
+#include <stdlib.h>
 #include <vector>
 #include <math.h>
 using namespace std;
@@ -166,6 +167,37 @@ int constraintsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, 
 	return newrow;
 }
 
+void coeffRed(float *coeffEqu, int i, int numcol)
+{
+	float tot=0;
+	int index[numcol];
+	for(int j=0;j<numcol;j++)
+	{
+		index[j]=0;
+	}
+	for(int j=0;j<numcol;j++)
+	{
+		float currCoeff = coeffEqu[i*(numcol+1)+j];
+		if(currCoeff>0)
+		{
+			tot+=currCoeff;
+		}
+	}
+	tot = tot - coeffEqu[i*(numcol+1)+numcol];
+	for(int j=0; j<numcol;j++)
+	{
+		if(abs(coeffEqu[i*(numcol+1)+j])>tot)
+		{
+			index[j]=1;
+			cout<<j<<" ";
+		}
+	}
+	cout<<endl;
+}
+
 void coefficientsReduction(float *coeffEqu, int numrow, int numcol){
-	
+	for(int i=0;i<numrow;i++)
+	{
+		coeffRed(coeffEqu, i, numcol);
+	}
 }

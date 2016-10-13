@@ -17,8 +17,8 @@ int main(){
 	Variable *list[6] = {x1, x2, x3, x4, x5, x6};
 	vector<Variable*>cond;
 	cond.insert(cond.begin(), list, list+6);
-	int numrow;
-	int numcol;
+	int numrow=1;
+	int numcol=6;
 	float coeffEqu[numrow][numcol+1]={6, 3, -5, 2, 7, -4, 15};
 	coefficientsReduction((float*)coeffEqu, numrow, numcol);
 	

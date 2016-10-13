@@ -7,3 +7,4 @@ bool update(std::vector<Variable*> *cond, int numcol, float coeffEqu, int numrow
 void deleteConstraint(float *coeffEqu, int i, int numrow, int numcol);
 void fixingVariables(std::vector<Variable*> *cond, float *coeffEqu, int numcol);
 void coefficientsReduction(float *coeffEqu, int numrow, int numcol);
+void coeffRed(float *coeffEqu, int i, int numcol);
