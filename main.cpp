@@ -20,7 +20,7 @@ int main(){
 	int numcol = 3;
 	float coeffEqu[numrow][numcol+1]={{2, 1, 3, b1},{3, -2, -1, b2}};
 	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
-	constraintsPreprocess(&cond, (float*)coeffEqu, numrow, numcol);
+	numrow = constraintsPreprocess(&cond, (float*)coeffEqu, numrow, numcol);
 	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
 }
 
