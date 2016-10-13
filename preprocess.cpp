@@ -190,10 +190,8 @@ void coeffRed(float *coeffEqu, int i, int numcol)
 		if(abs(coeffEqu[i*(numcol+1)+j])>diff)
 		{
 			index[j]=1;
-			cout<<j<<" ";
 		}
 	}
-	cout<<endl;
 	int indexes = 0;
 	for(int j=0;j<numcol;j++)
 	{
@@ -215,6 +213,7 @@ void coeffRed(float *coeffEqu, int i, int numcol)
 				{
 					coeffEqu[i*(numcol+1)+j] = coeffEqu[i*(numcol+1)+numcol]-M;
 				}
+				break;
 			}
 		}
 		coeffRed(coeffEqu, i, numcol);
