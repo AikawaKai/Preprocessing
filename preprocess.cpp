@@ -3,9 +3,8 @@
 #include <stdlib.h>
 #include <vector>
 #include <math.h>
-using namespace std;
 
-bool update(vector<Variable*> *cond, int numvar, float *coeffEqu, int row, int pos){
+bool update(std::vector<Variable*> *cond, int numvar, float *coeffEqu, int row, int pos){
 	float currcoeff = coeffEqu[row*(numvar+1)+pos];
 	bool check;
 	if(currcoeff==0)
@@ -56,7 +55,7 @@ bool update(vector<Variable*> *cond, int numvar, float *coeffEqu, int row, int p
 	return true;
 }
 
-void boundsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol) {
+void boundsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
 	bool updated_t;
 	while(updated)
@@ -103,7 +102,7 @@ void deleteConstraint(float *coeffEqu, int i, int numrow, int numcol)
 	}
 }
 
-void fixingVariables(vector<Variable*> *cond, float *coeffEqu, int numcol)
+void fixingVariables(std::vector<Variable*> *cond, float *coeffEqu, int numcol)
 {
 	for(int i=0;i<numcol;i++)
 	{
@@ -118,7 +117,7 @@ void fixingVariables(vector<Variable*> *cond, float *coeffEqu, int numcol)
 	
 }
 
-int constraintsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
+int constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol)
 {
 	float U;
 	float L;
@@ -146,11 +145,11 @@ int constraintsPreprocess(vector<Variable*> *cond, float *coeffEqu, int numrow, 
 		bi = coeffEqu[i*(numcol+1)+numcol];
 		if(L>bi)
 		{
-			cout<<"Constraint "<<i<<" is infeasable";
+			std::cout<<"Constraint "<<i<<" is infeasable";
 			break;
 		}else if(bi>=U)
 		{
-			cout<<"Constraint "<<i<<" is redundant"<<endl;
+			std::cout<<"Constraint "<<i<<" is redundant"<<std::endl;
 			deleteConstraint(coeffEqu, i, newrow, numcol);
 			newrow = constraintsPreprocess(cond, coeffEqu, newrow-1, numcol);
 			return newrow;
