@@ -5,6 +5,7 @@
 #include "type.h"
 #include "preprocess.h"
 #include "print_utility.h"
+#include "write_utility.h"
 
 int main(){
 	floatVar *x1 = new floatVar("x1" ,1 , 2);
@@ -18,7 +19,11 @@ int main(){
 	cond.insert(cond.begin(), list, list+6);
 	int numrow=1;
 	int numcol=6;
+	int num_x = 6;
+	int num_y = 0;
+	int num_z = 0;
 	float coeffEqu[numrow][numcol+1]={6, 3, -5, 2, 7, -4, 15};
+	writeDat(&cond, (float*)coeffEqu, numrow, numcol, num_x, num_y, num_z);
 	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
 	coefficientsReduction((float*)coeffEqu, numrow, numcol);
 	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
