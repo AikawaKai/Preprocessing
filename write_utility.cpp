@@ -36,6 +36,35 @@ std::string seqIntToString(int numofelements)
 	return output;
 }
 
+std:: string matrixCoeffToString(float *coeffEqu, int numrow, int numcol, int offset, int num_var)
+{
+	std::string firstrow = "\t";
+	std::string nextline = "";
+	for(int i=0;i<num_var;i++)
+	{
+		firstrow+=patch::to_string(i)+"  ";
+	}
+	firstrow+="=:";
+	for(int i=0;i<numrow;i++)
+	{
+		nextline+=patch::to_string(i)+"\t";
+		for(int j=offset;j<num_var+offset;j++)
+		{
+			if(j==num_var+offset-1 && i==numrow-1)
+			{
+				nextline+=patch::to_string(coeffEqu[i*(numcol+1)+j])+";";
+			}
+			else
+			{
+				nextline+=patch::to_string(coeffEqu[i*(numcol+1)+j])+"  ";	
+			}
+		}
+		nextline+="\n";
+	}
+	
+	return firstrow+"\n"+nextline;
+}
+
 void writeDat(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol, int num_x, int num_y, int num_z)
 {
 	std::ofstream outfile;
@@ -51,7 +80,10 @@ void writeDat(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int num
 	outfile<<"set num_vary := "<<output<<std::endl;
 	output = seqIntToString(num_z);
 	outfile<<"set num_varz := "<<output<<std::endl;
-	outfile<<"set min_max := min, max;";
+	outfile<<"set min_max := min, max;"<<std::endl;
+	output = matrixCoeffToString(coeffEqu, numrow, numcol, 0, num_x);
+	outfile<<"param coff_x:"<<std::endl;
+	outfile<<output<<std::endl;
 	
 	outfile.close();
 	
