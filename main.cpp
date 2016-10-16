@@ -79,6 +79,9 @@ int main(){
 		}
 	}
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
+	writeDat("./firstattempt.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
+	boundsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
+	writeDat("./firstattemptafter.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
 }
 
 
