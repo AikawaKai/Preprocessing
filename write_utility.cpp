@@ -163,5 +163,4 @@ void writeDat(std::string name_file, std::vector<Variable*> *cond, float *coeffE
 	output = bParametersToString(coeffEqu, numrow, numcol);
 	outfile<<output<<std::endl;
 	outfile.close();
-	
 }
