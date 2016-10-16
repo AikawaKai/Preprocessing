@@ -3,6 +3,8 @@
 #include <typeinfo>
 #include <vector>
 #include <random>
+#include <chrono>
+#include <ctime>
 #include "type.h"
 #include "preprocess.h"
 #include "print_utility.h"
@@ -10,7 +12,7 @@
 
 int main(){
 	std::random_device rd;
-    std::mt19937 eng(rd());
+    std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<> distr(1, 100);
 
 	int num_var = distr(eng); 
