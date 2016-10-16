@@ -130,6 +130,14 @@ std::string bParametersToString(float* coeff, int numrow, int numcol)
 
 void writeDat(std::string name_file, std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol, int num_x, int num_y, int num_z)
 {
+	if(numrow==0)
+	{
+		for(int j=0; j<numcol+1;j++)
+		{
+			coeffEqu[j] = 0;
+		}
+		numrow+=1;
+	}
 	std::ofstream outfile;
 	outfile.open(name_file.c_str());
 	std::string output;
