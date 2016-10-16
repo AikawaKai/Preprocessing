@@ -81,8 +81,6 @@ std:: string matrixCoeffToString(float *coeffEqu, int numrow, int numcol, int of
 			nextline+="\n";
 		}
 	}
-	
-	
 	return firstrow+"\n"+nextline;
 }
 
@@ -91,17 +89,36 @@ std::string matrixBoundsToString(std::vector<Variable*> *cond, int offset, int n
 	std::string firstrow = "\t";
 	std::string nextline = "";
 	firstrow+="min	max :=";
-	for(int i=0;i<num_var;i++)
+	for(int i=offset;i<num_var+offset;i++)
 	{
-		for(int j=offset;j<num_var;j++)
+		nextline+=patch::to_string(i-offset)+"\t";
+		if(i==num_var-1+offset)
 		{
-			if(j==num_var-1)
-			{
-				
-			}
+			nextline+=patch::to_string((*cond)[i]->returnMin())+"\t"+patch::to_string((*cond)[i]->returnMax())+";";
+		}
+		else
+		{
+			nextline+=patch::to_string((*cond)[i]->returnMin())+"\t"+patch::to_string((*cond)[i]->returnMax())+"\n";
 		}	
 	}	
-	return firstrow+"\n"+nextline;
+	return firstrow+"\n"+nextline+"\n";
+}
+
+std::string bParametersToString(float* coeff, int numrow, int numcol)
+{
+	std::string to_return = "";
+	for(int i=0;i<numrow;i++)
+	{
+		if(i==numrow-1)
+		{
+			to_return+=patch::to_string(i)+"\t"+patch::to_string(coeff[i*(numcol+1)+numcol])+";";
+		}
+		else
+		{
+			to_return+=patch::to_string(i)+"\t"+patch::to_string(coeff[i*(numcol+1)+numcol])+",\t";
+		}
+	}
+	return to_return;
 }
 
 void writeDat(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol, int num_x, int num_y, int num_z)
@@ -134,6 +151,9 @@ void writeDat(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int num
 	outfile<<output<<std::endl;
 	output = matrixBoundsToString(cond, num_x, numrow, num_y);
 	outfile<<"param bounds_y:"<<std::endl;
+	outfile<<output<<std::endl;
+	outfile<<"param b:= ";
+	output = bParametersToString(coeffEqu, numrow, numcol);
 	outfile<<output<<std::endl;
 	outfile.close();
 	
