@@ -41,11 +41,12 @@ std:: string matrixCoeffToString(float *coeffEqu, int numrow, int numcol, int of
 	std::string firstrow = "\t";
 	std::string nextline = "";
 	for(int i=0;i<num_var;i++)
-		{
-			firstrow+=patch::to_string(i)+"  ";
-		}
+	{
+		firstrow+=patch::to_string(i)+"  ";
+	}
 	if(num_var==0)
 	{
+		firstrow+="0 :=";
 		for(int i=0;i<numrow;i++)
 		{
 			nextline+=patch::to_string(i)+"\t"+"0"+"\n";
@@ -54,7 +55,7 @@ std:: string matrixCoeffToString(float *coeffEqu, int numrow, int numcol, int of
 	}
 	else
 	{
-		firstrow+="=:";
+		firstrow+=":=";
 		for(int i=0;i<numrow;i++)
 		{
 			nextline+=patch::to_string(i)+"\t";
@@ -74,6 +75,38 @@ std:: string matrixCoeffToString(float *coeffEqu, int numrow, int numcol, int of
 	}
 	
 	
+	return firstrow+"\n"+nextline;
+}
+
+std::string matrixBoundsToString(std::vector<Variable*> *cond, int offset, int numrow, int num_var)
+{
+	std::string firstrow = "\t";
+	std::string nextline = "";
+	for(int i=0;i<num_var;i++)
+	{
+		firstrow+=patch::to_string(i)+"  ";
+	}
+	if(num_var==0)
+	{
+		for(int i=0;i<numrow;i++)
+		{
+			nextline+=patch::to_string(i)+"\t"+"0"+"\n";
+		}
+		nextline+=";";
+	}
+	else
+	{
+		for(int i=0;i<numrow;i++)
+		{
+			for(int j=offset;j<num_var;j++)
+			{
+				if(j==num_var-1)
+				{
+					
+				}
+			}	
+		}	
+	}
 	return firstrow+"\n"+nextline;
 }
 
@@ -102,7 +135,15 @@ void writeDat(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int num
 	output = matrixCoeffToString(coeffEqu, numrow, numcol, num_x+num_y, num_z);
 	outfile<<"param coeff_z:"<<std::endl;
 	outfile<<output<<std::endl;
-	
+	output = matrixBoundsToString(cond, 0, numrow, num_x);
+	outfile<<"param bounds_x:"<<std::endl;
+	outfile<<output<<std::endl;
+	output = matrixBoundsToString(cond, num_x, numrow, num_y);
+	outfile<<"param bounds_y:"<<std::endl;
+	outfile<<output<<std::endl;
+	output = matrixBoundsToString(cond, num_x+num_y, numrow, num_z);
+	outfile<<"param bounds_z:"<<std::endl;
+	outfile<<output<<std::endl;
 	outfile.close();
 	
 }
