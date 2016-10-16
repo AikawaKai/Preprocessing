@@ -11,7 +11,6 @@
 #include "write_utility.h"
 
 int main(){
-	std::random_device rd;
     std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<> distr(1, 100);
 
