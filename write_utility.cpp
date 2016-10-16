@@ -89,18 +89,25 @@ std::string matrixBoundsToString(std::vector<Variable*> *cond, int offset, int n
 	std::string firstrow = "\t";
 	std::string nextline = "";
 	firstrow+="min	max :=";
-	for(int i=offset;i<num_var+offset;i++)
+	if(num_var == 0)
 	{
-		nextline+=patch::to_string(i-offset)+"\t";
-		if(i==num_var-1+offset)
+		nextline+="0\t0\t0;";
+	}
+	else
+	{
+		for(int i=offset;i<num_var+offset;i++)
 		{
-			nextline+=patch::to_string((*cond)[i]->returnMin())+"\t"+patch::to_string((*cond)[i]->returnMax())+";";
-		}
-		else
-		{
-			nextline+=patch::to_string((*cond)[i]->returnMin())+"\t"+patch::to_string((*cond)[i]->returnMax())+"\n";
-		}	
-	}	
+			nextline+=patch::to_string(i-offset)+"\t";
+			if(i==num_var-1+offset)
+			{
+				nextline+=patch::to_string((*cond)[i]->returnMin())+"\t"+patch::to_string((*cond)[i]->returnMax())+";";
+			}
+			else
+			{
+				nextline+=patch::to_string((*cond)[i]->returnMin())+"\t"+patch::to_string((*cond)[i]->returnMax())+"\n";
+			}	
+		}		
+	}
 	return firstrow+"\n"+nextline+"\n";
 }
 
@@ -151,7 +158,7 @@ void writeDat(std::string name_file, std::vector<Variable*> *cond, float *coeffE
 	outfile<<output<<std::endl;
 	output = matrixBoundsToString(cond, num_x, numrow, num_y);
 	outfile<<"param bounds_y:"<<std::endl;
-	outfile<<output<<std::endl;
+	outfile<<output<<std::endl;		
 	outfile<<"param b:= ";
 	output = bParametersToString(coeffEqu, numrow, numcol);
 	outfile<<output<<std::endl;
