@@ -121,10 +121,10 @@ std::string bParametersToString(float* coeff, int numrow, int numcol)
 	return to_return;
 }
 
-void writeDat(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol, int num_x, int num_y, int num_z)
+void writeDat(std::string name_file, std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol, int num_x, int num_y, int num_z)
 {
 	std::ofstream outfile;
-	outfile.open("./prova.dat");
+	outfile.open(name_file.c_str());
 	std::string output;
 	output = seqIntToString(numcol);
 	outfile<<"set num_var := "<<output<<std::endl;

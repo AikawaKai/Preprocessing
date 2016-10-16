@@ -25,9 +25,10 @@ int main(){
 	int num_y = 2;
 	int num_z = 0;
 	float coeffEqu [numrow][numcol+1] = {{4, -3, -2, 1, 2, b1}, {-3, 2, -1, 2, 3, b2}};
-	writeDat(&cond, (float*)coeffEqu, numrow, numcol, num_x, num_y, num_z);
+	writeDat("./esempio1_prima.dat", &cond, (float*)coeffEqu, numrow, numcol, num_x, num_y, num_z);
 	printConstraints(&cond, (float*) coeffEqu, numrow, numcol);
 	boundsPreprocess(&cond, (float*) coeffEqu, numrow, numcol);
+	writeDat("./esempio1_dopo.dat", &cond, (float*)coeffEqu, numrow, numcol, num_x, num_y, num_z);
 	std::cout<<"\n";
 	printConstraints(&cond, (float*) coeffEqu, numrow, numcol);
 }
