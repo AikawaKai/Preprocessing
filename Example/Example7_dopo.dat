@@ -1,29 +1,24 @@
 set num_var := 0,1,2,3,4,5;
 set num_vinc := 0;
-set num_varx := 0,1,2,3,4,5;
+set num_varx := 0;
 set num_vary := 0;
-set num_varz := 0;
+set num_varz := 0,1,2,3,4,5;
 set min_max := min, max;
 param coeff_x:
-	0  1  2  3  4  5  :=
-0	3  3  -3  2  3  -3;
+	0 :=
+0	0;
 
 param coeff_y:
 	0 :=
 0	0;
 
 param coeff_z:
-	0 :=
-0	0;
+	0  1  2  3  4  5  :=
+0	3  3  -3  2  3  -3;
 
 param bounds_x:
 	min	max :=
-0	1	2
-1	1	2
-2	1	2
-3	1	2
-4	1	2
-5	1	2;
+0	0	0;
 
 param bounds_y:
 	min	max :=
