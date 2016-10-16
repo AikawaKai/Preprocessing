@@ -8,25 +8,26 @@
 #include "write_utility.h"
 
 int main(){
-	binVar *y1 = new binVar("y1");
-	binVar *y2 = new binVar("y2");
-	binVar *y3 = new binVar("y3");
-	std::vector<Variable*> cond;
-	Variable *list[3]= {y1, y2, y3};
-	cond.insert(cond.begin(), list, list+3);
-	float b1 = 7;
-	float b2 = 3;
-	int numrow = 2;
-	int numcol = 3;
-	int num_x = 0;
+	floatVar *x1 = new floatVar("x1" ,1 , 2);
+	floatVar *x2 = new floatVar("x2" ,1 , 2);
+	floatVar *x3 = new floatVar("x3" ,1 , 2);
+	floatVar *x4 = new floatVar("x4" ,1 , 2);
+	floatVar *x5 = new floatVar("x5" ,1 , 2);
+	floatVar *x6 = new floatVar("x6" ,1 , 2);
+	Variable *list[6] = {x1, x2, x3, x4, x5, x6};
+	std::vector<Variable*>cond;
+	cond.insert(cond.begin(), list, list+6);
+	int numrow=1;
+	int numcol=6;
+	int num_x = 6;
 	int num_y = 0;
-	int num_z = 3;
-	float coeffEqu[numrow][numcol+1]={{2, 1, 3, b1},{3, -2, -1, b2}};
+	int num_z = 0;
+	float coeffEqu[numrow][numcol+1]={6, 3, -5, 2, 7, -4, 15};
 	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
-	writeDat("./Example6_prima.dat", &cond, (float*)coeffEqu, numrow, numcol, num_x, num_y, num_z);
-	numrow = constraintsPreprocess(&cond, (float*)coeffEqu, numrow, numcol);
-	writeDat("./Example6_dopo.dat", &cond, (float*)coeffEqu, numrow, numcol, num_x, num_y, num_z);
+	writeDat("./Example7_prima.dat", &cond, (float*)coeffEqu, numrow, numcol, num_x, num_y, num_z);
+	coefficientsReduction((float*)coeffEqu, numrow, numcol);
 	printConstraints(&cond, (float*)coeffEqu, numrow, numcol);
+	writeDat("./Example7_dopo.dat", &cond, (float*)coeffEqu, numrow, numcol, num_x, num_y, num_z);
 }
 
 
