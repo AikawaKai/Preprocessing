@@ -46,11 +46,21 @@ int main(){
 
 	int num_var = distr(eng); 
 	int numrow = distr(eng);
-	std::uniform_int_distribution<> distr_x(1, num_var);
-	int num_x = distr_x(eng);
-	std::uniform_int_distribution<> distr_y(0, num_var-num_x);
-	int num_y = distr_y(eng);
-	int num_z = num_var - num_x - num_y;
+	int num_x, num_y, num_z;
+	if(neg_pos()==-1)
+	{
+		num_x = 0;
+		num_y = 0;
+		num_z = num_var;
+	}
+	else
+	{
+		std::uniform_int_distribution<> distr_x(1, num_var);
+		num_x = distr_x(eng);
+		std::uniform_int_distribution<> distr_y(0, num_var-num_x);
+		num_y = distr_y(eng);
+		num_z = num_var - num_x - num_y;
+	}
 	std::cout<<"tot: "<<num_var<<" x: "<<num_x<<" y: "<<num_y<<" z: "<<num_z;
 	std::vector<Variable*> cond;
 	std::uniform_int_distribution<> distr_min(min_val, max_val);
