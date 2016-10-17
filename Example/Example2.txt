@@ -11,9 +11,9 @@
 	int numcol = 4;
 	float coeffEqu [numrow][numcol+1]={{8, 11, -9, 4, b1}, {1, -4, -6, 1, b2}};
 	
-	cout<<"[Before update]\n";
+	std::cout<<"[Before update]\n";
 	printConstraints(&cond, (float *)coeffEqu, numrow, numcol);
 	
-	cout<<"\n[After update]\n";
+	std::cout<<"\n[After update]\n";
 	boundsPreprocess(&cond, (float *)coeffEqu, numrow, numcol);
 	printConstraints(&cond, (float *)coeffEqu, numrow, numcol);

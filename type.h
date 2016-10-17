@@ -50,24 +50,43 @@ class Variable
 	}
 	
 	virtual bool setMin(float new_value){
-		min = new_value;
-		if(min == max)
+		if (new_value>max)
 		{
+			min = max;
 			value = min;
 			fixed = true;
 			return true;
 		}
+		else
+		{
+			min = new_value;
+			if(min == max)
+			{
+				value = min;
+				fixed = true;
+				return true;
+			}
+		}
 		return false;
-
 	}
 	
 	virtual bool setMax(float new_value){
-		max = new_value;
-		if(max == min)
+		if (new_value<min)
 		{
+			max = min;
 			value = max;
 			fixed = true;
 			return true;
+		}
+		else
+		{
+			max = new_value;
+			if(max == min)
+			{
+				value = max;
+				fixed = true;
+				return true;
+			}
 		}
 		return false;
 	}

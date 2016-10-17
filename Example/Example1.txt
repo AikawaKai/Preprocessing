@@ -4,7 +4,7 @@
 	intVar* y4 = new intVar("y4" , 2, 4);
 	intVar* y5 = new intVar("y5" , 0, 10000000);
 	Variable *list[]={x1, x2, x3, y4, y5};
-	vector<Variable*> cond;
+	std::vector<Variable*> cond;
 	cond.insert(cond.begin(),list, list+5);
 	
 	float b1 = 13;
@@ -14,5 +14,5 @@
 	float coeffEqu [numrow][numcol+1] = {{4, -3, -2, 1, 2, b1}, {-3, 2, -1, 2, 3, b2}};
 	printConstraints(&cond, (float*) coeffEqu, numrow, numcol);
 	boundsPreprocess(&cond, (float*) coeffEqu, numrow, numcol);
-	cout<<"\n";
+	std::cout<<"\n";
 	printConstraints(&cond, (float*) coeffEqu, numrow, numcol);
