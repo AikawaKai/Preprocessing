@@ -73,11 +73,19 @@ int main(){
 		cond.push_back(new binVar("z"+patch::to_string(i)));
 	}
 	float coeffEqu[numrow][num_var+1];
+	std::uniform_int_distribution<> distr_new(10, 150);
 	for(int i=0;i<numrow;i++)
 	{
 		for(int j=0;j<num_var+1;j++)
 		{
-			coeffEqu[i][j]=distr_min(eng)*neg_pos();
+			if(j==num_var)
+			{
+				coeffEqu[i][j]=distr_new(eng);
+			}
+			else
+			{
+				coeffEqu[i][j]=distr_min(eng)*neg_pos();
+			}
 		}
 	}
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
