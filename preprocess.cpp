@@ -146,7 +146,7 @@ int constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int num
 		if(L>bi)
 		{
 			std::cout<<"Constraint "<<i<<" is infeasable";
-			break;
+			return -1;
 		}else if(bi>=U)
 		{
 			std::cout<<"Constraint "<<i<<" is redundant"<<std::endl;
