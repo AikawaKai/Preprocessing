@@ -91,6 +91,10 @@ int main(){
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
 	writeDat("./firstattempt.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
 	boundsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
+	if(num_x==0 && num_y==0)
+	{
+		coefficientsReduction((float*)coeffEqu, numrow, num_var);
+	}
 	numrow = constraintsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
 	if(numrow!=-1)
 	{
