@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.29)  19 OCT 2016 18:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.29)  19 OCT 2016 18:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -208,32 +208,49 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./relation.toc)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./relation.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+)
 \tf@toc=\write3
 \openout3 = `relation.toc'.
 
 
-[2] 
+[2]
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¨ in font cmr10!
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 156.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 156.
+
+
 AED: lastpage setting LastPage
 [3] (./relation.aux) ) 
 Here is how much of TeX's memory you used:
- 3379 strings out of 493085
- 48720 string characters out of 6136917
- 227592 words of memory out of 5000000
- 6827 multiletter control sequences out of 15000+600000
+ 3398 strings out of 493085
+ 49040 string characters out of 6136917
+ 228592 words of memory out of 5000000
+ 6843 multiletter control sequences out of 15000+600000
  8902 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,43p,291b,239s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,43p,303b,239s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on relation.pdf (3 pages, 71097 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on relation.pdf (3 pages, 79686 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 26 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

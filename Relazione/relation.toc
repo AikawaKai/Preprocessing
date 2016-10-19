@@ -1,2 +1,2 @@
 \contentsline {section}{\numberline {1}Scopo del lavoro}{3}
-\contentsline {section}{\numberline {2}Tecniche implementate}{3}
+\contentsline {subsection}{\numberline {1.1}Tecniche implementate}{3}
