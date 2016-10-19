@@ -46,7 +46,7 @@
 
 % Set up the header and footer
 \pagestyle{fancy}
-\lhead{\hmwkClass} % Top left header
+\lhead{\hmwktitolobreve} % Top left header
 \lfoot{\lastxmark} % Bottom left footer
 \cfoot{} % Bottom center footer
 \rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
@@ -96,48 +96,6 @@
 \end{itemize}
 }
 
-%----------------------------------------------------------------------------------------
-%	DOCUMENT STRUCTURE COMMANDS
-%	Skip this unless you know what you're doing
-%----------------------------------------------------------------------------------------
-
-% Header and footer for when a page split occurs within a problem environment
-\newcommand{\enterProblemHeader}[1]{
-\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
-\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
-}
-
-% Header and footer for when a page split occurs between problem environments
-\newcommand{\exitProblemHeader}[1]{
-\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
-\nobreak\extramarks{#1}{}\nobreak
-}
-
-\setcounter{secnumdepth}{0} % Removes default section numbers
-\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
-
-\newcommand{\homeworkProblemName}{}
-\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
-\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
-\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
-\section{\homeworkProblemName} % Make a section in the document with the custom problem count
-\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
-}{
-\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
-}
-
-\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
-\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
-}
-
-\newcommand{\homeworkSectionName}{}
-\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
-\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
-\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
-\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
-}{
-\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
-}
 
 %----------------------------------------------------------------------------------------
 %	NAME AND CLASS SECTION
@@ -146,6 +104,7 @@
 
 \newcommand{\hmwkDueDate}{\date{\today}} % Due date
 \newcommand{\hmwkClass}{Tecniche di Preprocessing in C++ applicate a problemi lineari misto-interi (MIP) } % Course/class
+\newcommand{\hmwktitolobreve}{MIP Preprocessing} %
 \newcommand{\hmwkUniversita}{Università degli Studi Di Milano} % Teacher/lecturer
 \newcommand{\hmwkAuthorName}{Marco Odore} % Your name
 
@@ -185,30 +144,13 @@
 
 % To have just one problem per page, simply put a \clearpage after each problem
 
-\begin{homeworkProblem}
-Listing \ref{homework_example} shows a Perl script.
+\section{Scopo del lavoro}
 
-\perlscript{homework_example}{Sample Perl Script With Highlighting}
+Scopo del lavoro: bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
 
-\lipsum[1]
-\end{homeworkProblem}
+\section{Tecniche implementate}
 
-%----------------------------------------------------------------------------------------
-%	PROBLEM 2
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\lipsum[2]
-
-\problemAnswer{
-\begin{center}
-\includegraphics[width=0.75\columnwidth]{example_figure} % Example image
-\end{center}
-
-\lipsum[3-5]
-}
-\end{homeworkProblem}
-
+Tecniche implementate: bla bla bla bla bla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla blabla bla bla bla
 %----------------------------------------------------------------------------------------
 
 \end{document}
