@@ -25,6 +25,8 @@
 
 \documentclass{article}
 
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel} 
 \usepackage{fancyhdr} % Required for custom headers
 \usepackage{lastpage} % Required to determine the last page for the footer
 \usepackage{extramarks} % Required for headers and footers
@@ -146,19 +148,25 @@
 
 \section{Scopo del lavoro}
 
-Il lavoro propone una possibile implementazione di alcune delle tecniche di preprocessing applicate ai problemi di ottimizzazione lineare misto-interi (MIP). Per validare la correttezza del software è stato realizzato un generatore randomico di problemi MIP da sottomettere poi in AMPL. 
+Il lavoro propone una possibile implementazione di alcune delle tecniche di preprocessing applicate ai problemi di ottimizzazione lineare misto-interi (MIP) e binary (BIP). Per validare la correttezza del software è stato realizzato un generatore randomico di problemi MIP/BIP da sottomettere poi in AMPL. 
 
 \subsection{Tecniche implementate}
 
 Sono state implementate diverse tecniche adatte a diversi contesti della programmazione lineare:
 
 \begin{itemize}
-\item Riduzione dei bound delle variabili
+\item Riduzione dei bound sulle variabili
 \item Ricerca di vincoli non soddisfacibili
 \item Eliminazione di vincoli ridondanti
 \item Fissaggio delle variabili
-\item Riduzione dei coefficienti nei problemi BIP (binary integer program)
+\item Riduzione dei coefficienti nei problemi BIP
 \end{itemize}
+
+\section{Bounds Tightening}
+
+La riduzione dei bound è una tecnica applicabile a tutti i tipi di variabili, e cioè a quelle di tipo continuo, intero e binario.
+
+Questo metodo di preprocessing consiste nell'iterare sui vincoli del problema verificando la presenza di bound migliori per ogni variabile esaminata. Il procedimento continua finché, una volta iterati tutti i vincoli, ci sono stati degli aggiornamenti sui bound. 
 %----------------------------------------------------------------------------------------
 
 \end{document}
