@@ -167,7 +167,34 @@ Sono state implementate diverse tecniche adatte a diversi contesti della program
 La riduzione dei bound è una tecnica applicabile a tutti i tipi di variabili, e cioè a quelle di tipo continuo, intero e binario.
 \newline
 \newline
-Questo metodo di preprocessing consiste nell'iterare sui vincoli del problema verificando la presenza di bound migliori per ogni variabile esaminata. Il procedimento continua finché, una volta iterati tutti i vincoli, ci sono stati degli aggiornamenti sui bound. 
+Questo metodo di preprocessing consiste nell'iterare sui vincoli del problema verificando la presenza di bound migliori per ogni variabile esaminata. Il procedimento continua finché, una volta iterati tutti i vincoli, ci sono stati degli aggiornamenti sui bound.
+\newline
+\newline
+Procedimento:
+\begin{itemize}
+\item Per ogni vincolo si considerano separatamente le variabili con coefficienti positivi da quelle con coefficienti negativi:
+\[
+\sum_{a_{ij}>0}a_{ij} x_{j} + \sum_{a_{ij}<0}a_{ij} x_{j} \le b_i  \;\;\;\forall i
+\] 
+\item Si isola una variabile k alla volta, cercando di ottimizzare i suoi bound:
+\[
+a_{ik} x_{k} + \sum_{a_{ij}>0}a_{ij} x_{j} + \sum_{a_{ij}<0}a_{ij} x_{j} \le b_i
+\]
+\item Si passa poi al calcolo del possibile nuovo bound, che nel caso di variabile con coefficiente positivo sarà il nuovo upperbound $u'_k$, mentre nel caso di variabile con coefficiente negativo sarà il nuovo lowerbound $l'_k$:
+
+\[
+if\;\;a_{ij}>0:\]
+\[
+u'_k = \frac{1}{a_{ik}}\left(b_i - \sum_{j\ne k,a_{ij}>0}a_{ij} x_{j} + \sum_{a_{ij}<0}a_{ij} x_{j}\right)
+\]
+
+\[
+if\;\;a_{ij}<0:\]
+\[
+l'_k = \frac{1}{a_{ik}}\left(b_i - \sum_{a_{ij}>0}a_{ij} x_{j} + \sum_{a_{j\ne k,ij}<0}a_{ij} x_{j}\right)
+\]
+
+\end{itemize}
 %----------------------------------------------------------------------------------------
 
 \end{document}
