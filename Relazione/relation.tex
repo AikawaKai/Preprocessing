@@ -35,6 +35,9 @@
 \usepackage{listings} % Required for insertion of code
 \usepackage{courier} % Required for the courier font
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 % Margins
 \topmargin=-0.45in
@@ -191,10 +194,25 @@ u'_k = \frac{1}{a_{ik}}\left(b_i - \sum_{j\ne k,a_{ij}>0}a_{ij} x_{j} + \sum_{a_
 \[
 if\;\;a_{ij}<0:\]
 \[
-l'_k = \frac{1}{a_{ik}}\left(b_i - \sum_{a_{ij}>0}a_{ij} x_{j} + \sum_{a_{j\ne k,ij}<0}a_{ij} x_{j}\right)
+l'_k = \frac{1}{a_{ik}}\left(b_i - \sum_{a_{ij}>0}a_{ij} x_{j} + \sum_{j\ne k,a_{ij}<0}a_{ij} x_{j}\right)
+\]
+\item Dopo i calcoli, i bound vengono effettivamente aggiornati, ponendo $u_k = u'_k$ o $l_k=l'_k$ se e solo se $u'_k<u_k$ o $l'_k>l_k$.
+\end{itemize}
+
+Nel caso le variabili siano intere (o binarie) viene semplicemente fatto il ceiling nel caso di nuovi lower bound ($\ceil*{l'_k}$) e floor nel caso di nuovi upper bound ($\floor*{u'_k}$)
+\section{Detecting Infeasibility and Variables Fixing}
+Per verificare se un vincolo è non soddisfacibile va calcolato prima di tutto il suo \textit{lower bound} $L_i$, che va poi confrontato con il termine noto $b_i$:
+
+\[
+L_i = \sum_{a_{ij}>0}a_{ij} l_{x_{j}} + \sum_{a_{ij}<0}a_{ij} u_{x_{j}}
 \]
 
-\end{itemize}
+Se $L_i>b_i$, allora il vincolo risulta chiaramente insoddisfacibile e non esiste quindi una soluzione.
+\newline
+Se invece $L_i=b_i$, si possono fissare le variabili seguendo questo criterio:
+
+\[\forall a_{ij}>0 \;\;\;\;\;\;\;\;\;\;\;\forall a_{ij}<0 \]
+\[x_j = l_{x_{j}} \;\;\;\;\;\;\;\;\;\;\;\; x_j = u_{x_{j}}\]
 %----------------------------------------------------------------------------------------
 
 \end{document}
