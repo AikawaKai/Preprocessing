@@ -221,7 +221,21 @@ Per individuare vincoli ridondanti viene calcolato l'\textit{upper bound} del vi
 U_i = \sum_{a_{ij}>0}a_{ij} u_{x_{j}} + \sum_{a_{ij}<0}a_{ij} l_{x_{j}}
 \]
 
-Se $U_i > b_i $ allora il vincolo viene rispettato sempre, qualunque sia il valore assunto dalle variabili, e quindi può essere eliminato. 
+Se $U_i \le b_i $ allora il vincolo viene rispettato sempre, qualunque sia il valore assunto dalle variabili, e quindi può essere eliminato. 
+
+\section{Coefficients Reduction}
+
+Questa tecnica può essere applicata solo a problemi di programmazione lineare binaria (BIP). Consiste nel ridurre la grandezza dei coefficienti dei vincoli eseguendo una serie di operazioni.
+\newline
+\newline
+Procedimento:
+
+\begin{itemize}
+\item Si considera un vincolo alla volta:
+\[\sum_{a_{ij}>0}a_{ij}x_{j} + \sum_{a_{ij}<0}a_{ij}x_{j} \le b_i \]
+\item Si ottiene il valore $M$ pari alla somma dei coefficienti positivi del vincolo $i$:
+\[M = \sum_{a_{ij}>0}a_{ij} \]
+\end{itemize}
 %----------------------------------------------------------------------------------------
 
 \end{document}

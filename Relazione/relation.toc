@@ -5,3 +5,4 @@
 \contentsline {section}{\numberline {2}Bounds Tightening}{3}
 \contentsline {section}{\numberline {3}Detecting Infeasibility and Variables Fixing}{4}
 \contentsline {section}{\numberline {4}Detecting Redundant Constraints}{4}
+\contentsline {section}{\numberline {5}Coefficients Reduction}{4}
