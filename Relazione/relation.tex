@@ -213,6 +213,15 @@ Se invece $L_i=b_i$, si possono fissare le variabili seguendo questo criterio:
 
 \[\forall a_{ij}>0 \;\;\;\;\;\;\;\;\;\;\;\forall a_{ij}<0 \]
 \[x_j = l_{x_{j}} \;\;\;\;\;\;\;\;\;\;\;\; x_j = u_{x_{j}}\]
+
+\section{Detecting Redundant Constraints}
+Per individuare vincoli ridondanti viene calcolato l'\textit{upper bound} del vincolo che si sta controllando, che poi viene confrontato con il suo termine noto $b_i$:
+
+\[
+U_i = \sum_{a_{ij}>0}a_{ij} u_{x_{j}} + \sum_{a_{ij}<0}a_{ij} l_{x_{j}}
+\]
+
+Se $U_i > b_i $ allora il vincolo viene rispettato sempre, qualunque sia il valore assunto dalle variabili, e quindi può essere eliminato. 
 %----------------------------------------------------------------------------------------
 
 \end{document}
