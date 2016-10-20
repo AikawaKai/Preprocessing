@@ -151,7 +151,7 @@
 
 \section{Scopo del lavoro}
 
-Il lavoro propone una possibile implementazione di alcune delle tecniche di preprocessing applicate ai problemi di ottimizzazione lineare misto-interi (MIP) e binary (BIP). Per validare la correttezza del software è stato realizzato un generatore randomico di problemi MIP/BIP da sottomettere poi in AMPL. 
+Il lavoro propone una possibile implementazione in C++ di alcune delle tecniche di preprocessing applicate ai problemi di ottimizzazione lineare misto-interi (MIP) e binary (BIP). Per validare la correttezza del software è stato realizzato un generatore randomico di problemi MIP/BIP da sottomettere poi in AMPL. 
 
 \subsection{Tecniche implementate}
 
@@ -199,7 +199,7 @@ l'_k = \frac{1}{a_{ik}}\left(b_i - \sum_{a_{ij}>0}a_{ij} x_{j} + \sum_{j\ne k,a_
 \item Dopo i calcoli, i bound vengono effettivamente aggiornati, ponendo $u_k = u'_k$ o $l_k=l'_k$ se e solo se $u'_k<u_k$ o $l'_k>l_k$.
 \end{itemize}
 
-Nel caso le variabili siano intere (o binarie) viene semplicemente fatto il ceiling nel caso di nuovi lower bound ($\ceil*{l'_k}$) e floor nel caso di nuovi upper bound ($\floor*{u'_k}$)
+Nel caso le variabili siano intere (o binarie) viene semplicemente fatto il ceiling nel caso di nuovi lower bound ($\ceil*{l'_k}$) e floor nel caso di nuovi upper bound ($\floor*{u'_k}$).
 \section{Detecting Infeasibility and Variables Fixing}
 Per verificare se un vincolo è non soddisfacibile va calcolato prima di tutto il suo \textit{lower bound} $L_i$, che va poi confrontato con il termine noto $b_i$:
 
@@ -215,7 +215,7 @@ Se invece $L_i=b_i$, si possono fissare le variabili seguendo questo criterio:
 \[x_j = l_{x_{j}} \;\;\;\;\;\;\;\;\;\;\;\; x_j = u_{x_{j}}\]
 
 \section{Detecting Redundant Constraints}
-Per individuare vincoli ridondanti viene calcolato l'\textit{upper bound} del vincolo che si sta controllando, che poi viene confrontato con il suo termine noto $b_i$:
+Per individuare vincoli ridondanti viene calcolato l'\textit{upper bound} $U_i$ del vincolo che si sta controllando, che poi viene confrontato con il suo termine noto $b_i$:
 
 \[
 U_i = \sum_{a_{ij}>0}a_{ij} u_{x_{j}} + \sum_{a_{ij}<0}a_{ij} l_{x_{j}}
@@ -235,7 +235,30 @@ Procedimento:
 \[\sum_{a_{ij}>0}a_{ij}x_{j} + \sum_{a_{ij}<0}a_{ij}x_{j} \le b_i \]
 \item Si ottiene il valore $M$ pari alla somma dei coefficienti positivi del vincolo $i$:
 \[M = \sum_{a_{ij}>0}a_{ij} \]
+
+\item Viene poi creato un set $S$ di coefficienti tali che il loro valore assoluto è maggiore di $M-b_i$:
+
+\[
+S=\{a_{ij}:|a_{ij}>M-b_i\}
+\]
+\item Se il set S non è vuoto seleziona un coefficiente $a_k$ al suo interno, e se $a_k>0$:
+
+\[a'_k = M - b_i \]
+\[b'_i = M - a_k \]
+\[a_k = a'_k\]
+\[b_i = b'_i\]
+
+\item mentre se $a_k<0$:
+\[ a'_k = b_i - M \]
+\[ a_k = a'_k \]
+
+Il procedimento viene iterato sul singolo vincolo finché il set $S$ ha almeno un elemento al suo interno.
+
 \end{itemize}
+
+\section{Preprocessing in C++}
+
+Le tecniche citate sono state implementate in c++ sfruttando la programmazione a oggetti, cercando di realizzare un'astrazione dei tipi di variabili presenti all'interno dei problemi di programmazione MIP (continue, intere e binarie), in maniera tale da garantirne le proprietà intrinseche.
 %----------------------------------------------------------------------------------------
 
 \end{document}
