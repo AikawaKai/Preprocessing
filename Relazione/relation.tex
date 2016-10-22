@@ -317,8 +317,12 @@ Oltre a queste sono state implementate altre funzioni di utilità, come funzioni
 
 \section{Validazione del lavoro}
 Per verificare la correttezza del lavoro si è sfruttato AMPL, un linguaggio di programmazione matematica e un modello predefinito di programmazione lineare, in cui variano le tipologie di variabili (e corrispettivi bound), il numero di vincoli, i coefficienti e i termini noti. Nella figura \ref{model1} è mostrato il modello utilizzato per la validazione.
-
 \perlscript{model1}{Modello usato per la validazione.}
+\newline
+\newline
+I valori per il modello in questione sono poi stati generati randomicamente ed inseriti in un file \textit{.dat}, che è stato poi utilizzato in AMPL. Successivamente è stato poi generato un secondo file \textit{.dat}, che rappresenta il risultato del preprocessamento sui dati. Una volta ottenuti i due risultati in AMPL sono stati poi confrontati per verificare la correttezza del processasemento, in quanto la soluzione in entrambi i casi dovrebbe essere la medesima.
+
+
 
 
 %----------------------------------------------------------------------------------------
