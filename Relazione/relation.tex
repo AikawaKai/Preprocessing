@@ -258,7 +258,55 @@ Il procedimento viene iterato sul singolo vincolo finché il set $S$ ha almeno u
 
 \section{Preprocessing in C++}
 
-Le tecniche citate sono state implementate in c++ sfruttando la programmazione a oggetti, cercando di realizzare un'astrazione dei tipi di variabili presenti all'interno dei problemi di programmazione MIP (continue, intere e binarie), in maniera tale da garantirne le proprietà intrinseche.
+Le tecniche citate sono state implementate in c++ sfruttando la programmazione a oggetti, cercando di realizzare un'astrazione dei tipi di variabili presenti all'interno dei problemi di programmazione MIP (continue, intere e binarie), in maniera tale da garantirne le proprietà intrinseche. 
+\newline
+\newline
+\subsection{Le classi}
+Praticamente è stata realizzata una classe astratta principale, chiamata \emph{Variable}, da cui derivano poi tutte le altre tipologie di variabili/classi, e cioè le classi \textit{intVar} e \textit{floatVar}. La variabile binaria è stata rappresentata da una classe derivata di \textit{intVar} chiamata \textit{binVar}, essendo un caso particolare di variabile intera.
+\newline
+\newline
+L'\textit{overriding} dei metodi di queste classi, in particolare \textit{setMin} e \textit{setMax}, ha permesso di garantire le proprietà intrinseche delle variabili (vincoli sui bound, sul tipo di dato).
+\newline
+\newline
+Nella Figura \ref{UML} è mostrato lo schema UML che mostra la struttura gerarchica delle classi utilizzate per rappresentare le variabili.
+\newline
+\newline
+Per quanto riguarda invece la rappresentazione dei coefficienti e dei termini noti è stata realizzata una semplice matrice di dimensione $i \times n$, dove $i$ è il numero di vincoli del problema, e $n$ è il numero delle variabili sommato ad 1, che rappresenta il termine noto. Un esempio di matrice è rappresentata nella Figura \ref{matrix}.
+\begin{figure}[ht]
+\centering
+\[
+10x_1 + 3x_2 + 5x_3 - 6x_4 \le 7
+\]
+\[
+-2x_1 + 2x_3 +3x_4 \le -1
+\]
+\[
+\left[\begin{matrix}10 & 3 & 5 & -6 & 7 \\ -2 & 0 & 2 & 3 & -1\end{matrix}\right]
+\]
+\caption{\footnotesize{La matrice dei coefficienti + termini noti ottenuta dall'insieme di vincoli dell'esempio.}}
+\label{matrix}
+\end{figure}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.38]{uml.png}
+\caption{\footnotesize{Lo schema UML delle classi che rapprentano le variabili in c++-}}
+\label{UML}
+\end{figure}
+\end{center}
+\subsection{Le funzioni}
+Per quanto riguarda le funzioni scritte per le tecniche di preprocessing, sono state implementate:
+
+\begin{itemize}
+\item La funzione \textit{boundsPreprocess} che prova a restringere i bound sulle variabili.
+\item La funzione \textit{constraintsPreprocess} che verifica la presenza di vincoli
+non soddisfacibili, di vincoli ridondanti e di variabili che è possibile fissare.
+\item La funzione \textit{coefficientsReduction}, applicabile solo al caso binario, che si occupa di provare la riduzione sui coefficienti.
+\end{itemize}
+
+Oltre a queste sono state implementate altre funzioni di utilità, come funzioni di stampa a console dell'insieme di vincoli e variabili (\textit{printConstraints}), e funzioni di scrittura su file di tipo \textit{.dat} (\textit{writeDat}), che sono file utilizzabili in AMPL, un linguaggio di programmazione matematica.
+
+\section{Validazione del lavoro}
+Per verificare la correttezza del lavoro si è sfruttato AMPL, un linguaggio di programmazione matematica.
 %----------------------------------------------------------------------------------------
 
 \end{document}

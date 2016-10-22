@@ -12,8 +12,8 @@
 #include "print_utility.h"
 #include "write_utility.h"
 
-const int max_val = 100;
-const int min_val = -100;
+const int max_val = 10;
+const int min_val = -10;
 namespace patch
 {
     template < typename T > std::string to_string( const T& n )
@@ -113,8 +113,8 @@ int main(){
 		printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
 		writeDat("./firstattemptafter.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
 	}
-	std::cout<<"\ntot: "<<num_var<<" x: "<<num_x<<" y: "<<num_y<<" z: "<<num_z<<" Numrow: "<<numrow<<std::endl;
-	std::cout<<"\nBounds tightned: "<<bounds<<std::endl;
+	std::cout<<"\n tot: "<<num_var<<" x: "<<num_x<<" y: "<<num_y<<" z: "<<num_z<<" Numrow: "<<numrow<<std::endl;
+	std::cout<<"\n Bounds tightned: "<<bounds<<std::endl;
 	if(num_x==0 && num_y==0)
 	{
 		std::cout<<"Binary problem. Reduced coefficients: "<<coeffred<<std::endl;
