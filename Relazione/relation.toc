@@ -9,3 +9,4 @@
 \contentsline {section}{\numberline {6}Preprocessing in C++}{5}
 \contentsline {subsection}{\numberline {6.1}Le classi}{5}
 \contentsline {subsection}{\numberline {6.2}Le funzioni}{6}
+\contentsline {section}{\numberline {7}Validazione del lavoro}{6}
