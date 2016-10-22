@@ -12,8 +12,8 @@
 #include "print_utility.h"
 #include "write_utility.h"
 
-const int max_val = 10;
-const int min_val = -10;
+const int max_val = 100;
+const int min_val = -100;
 namespace patch
 {
     template < typename T > std::string to_string( const T& n )
@@ -41,10 +41,12 @@ int neg_pos()
 
 int main(){
 	//* MIXED PROBLEM: CONTINUOS - INTEGER - BINARY 
-    	std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
-    	std::uniform_int_distribution<> distr(1, max_val);
-
-	int num_var = distr(eng); 
+    std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<> distr(1, max_val);
+	
+	int bounds;
+	int coeffred;
+	int num_var = distr(eng);
 	int numrow = distr(eng);
 	int num_x, num_y, num_z;
 	if(neg_pos()==-1)
@@ -83,7 +85,7 @@ int main(){
 		cond.push_back(new binVar("z"+patch::to_string(i)));
 	}
 	float coeffEqu[numrow][num_var+1];
-	std::uniform_int_distribution<> distr_new(10, 150);
+	std::uniform_int_distribution<> distr_new(1000, 1050);
 	for(int i=0;i<numrow;i++)
 	{
 		for(int j=0;j<num_var+1;j++)
@@ -100,16 +102,22 @@ int main(){
 	}
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
 	writeDat("./firstattempt.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
-	boundsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
+	bounds = boundsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
 	if(num_x==0 && num_y==0)
 	{
-		coefficientsReduction((float*)coeffEqu, numrow, num_var);
+		coeffred = coefficientsReduction((float*)coeffEqu, numrow, num_var);
 	}
 	numrow = constraintsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
 	if(numrow!=-1)
 	{
 		printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
 		writeDat("./firstattemptafter.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
+	}
+	std::cout<<"\ntot: "<<num_var<<" x: "<<num_x<<" y: "<<num_y<<" z: "<<num_z<<" Numrow: "<<numrow<<std::endl;
+	std::cout<<"\nBounds tightned: "<<bounds<<std::endl;
+	if(num_x==0 && num_y==0)
+	{
+		std::cout<<"Binary problem. Reduced coefficients: "<<coeffred<<std::endl;
 	}
 }
 

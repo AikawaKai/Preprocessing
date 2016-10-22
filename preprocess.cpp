@@ -55,9 +55,10 @@ bool update(std::vector<Variable*> *cond, int numvar, float *coeffEqu, int row, 
 	return true;
 }
 
-void boundsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol) {
+int boundsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int numrow, int numcol) {
 	bool updated = true;
 	bool updated_t;
+	int bounds = 0;
 	while(updated)
 	{
 		updated = false;
@@ -69,10 +70,12 @@ void boundsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int numrow,
 				if(updated_t)
 				{
 					updated = true;
+					bounds += 1;
 				}
 			}
 		}
 	}
+	return bounds;
 }
 
 void deleteConstraint(float *coeffEqu, int i, int numrow, int numcol)
@@ -166,7 +169,7 @@ int constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int num
 	return newrow;
 }
 
-void coeffRed(float *coeffEqu, int i, int numcol)
+void coeffRed(float *coeffEqu, int i, int numcol, int &count)
 {
 	float M=0;
 	float diff = 0;
@@ -207,22 +210,27 @@ void coeffRed(float *coeffEqu, int i, int numcol)
 					float a_ = coeffEqu[i*(numcol+1)+j];
 					coeffEqu[i*(numcol+1)+j] = diff;
 					coeffEqu[i*(numcol+1)+numcol] = M - a_;
-					
-				}else
+					count+=1;	
+				}
+				else
 				{
 					coeffEqu[i*(numcol+1)+j] = coeffEqu[i*(numcol+1)+numcol]-M;
+					count+=1;
 				}
 				break;
 			}
 		}
-		coeffRed(coeffEqu, i, numcol);
+		coeffRed(coeffEqu, i, numcol, count);
 	}
 	
 }
 
-void coefficientsReduction(float *coeffEqu, int numrow, int numcol){
+int coefficientsReduction(float *coeffEqu, int numrow, int numcol){
+	int count = 0;
 	for(int i=0;i<numrow;i++)
 	{
-		coeffRed(coeffEqu, i, numcol);
+		coeffRed(coeffEqu, i, numcol, count);
+	
 	}
+	return count;
 }
