@@ -57,7 +57,7 @@ int main(){
 	}
 	else
 	{
-		std::uniform_int_distribution<> distr_x(1, num_var);
+		std::uniform_int_distribution<> distr_x(0, num_var);
 		num_x = distr_x(eng);
 		std::uniform_int_distribution<> distr_y(0, num_var-num_x);
 		num_y = distr_y(eng);
@@ -71,6 +71,10 @@ int main(){
 		int min = distr_min(eng);
 		std::uniform_int_distribution<> distr_max(min+1, max_val);
 		int max = distr_max(eng);
+		if(min == max_val)
+		{
+			max = min;
+		}
 		cond.push_back(new floatVar("x"+patch::to_string(i), min, max));
 	}
 	for(int i=0; i<num_y;i++)
@@ -78,6 +82,10 @@ int main(){
 		int min = distr_min(eng);
 		std::uniform_int_distribution<> distr_max(min+1, max_val);
 		int max = distr_max(eng);
+		if(min == max_val)
+		{
+			max = min;
+		}
 		cond.push_back(new intVar("y"+patch::to_string(i), min, max));
 	}
 	for(int i=0; i<num_z;i++)
