@@ -108,21 +108,13 @@ int main(){
 		cond.push_back(new binVar("z"+patch::to_string(i)));
 	}
 	
-	//* COSTRUISCO MATRICE DEI COEFFICIENTI E TERMINI NOTI*//
+	//* COSTRUISCO MATRICE DEI COEFFICIENTI E TERMINI NOTI *//
 	float coeffEqu[numrow][num_var+1];
-	std::uniform_int_distribution<> distr_new(-10, 10);
 	for(int i=0;i<numrow;i++)
 	{
 		for(int j=0;j<num_var+1;j++)
 		{
-			if(j==num_var)
-			{
-				coeffEqu[i][j]=distr_new(eng);
-			}
-			else
-			{
-				coeffEqu[i][j]=distr_min(eng)*neg_pos();
-			}
+			coeffEqu[i][j]=distr_min(eng);
 		}
 	}
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
