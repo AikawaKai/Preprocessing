@@ -29,7 +29,7 @@ namespace patch
 //* FUNZIONE PER IL CAMBIO DI SEGNO *//
 int neg_pos()
 {
-	std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
+	std::mt19937 eng(11);
     std::uniform_int_distribution<> distr_pari_dispari(0, 1);
     if(distr_pari_dispari(eng)==0)
     {
@@ -43,8 +43,10 @@ int neg_pos()
 }
 
 //* MIXED PROBLEM: CONTINUOS - INTEGER - BINARY  *//
-int main(){
-    std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
+int main(int argc,char *argv[]){
+    //std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
+    //* PSEUDO RANDOM *//	
+    std::mt19937 eng(4);
     std::uniform_int_distribution<> distr(1, max_val);
 	
 	int bounds;
@@ -121,6 +123,7 @@ int main(){
 	
 	//* SCRIVO SU FILE I DATI DEL PROBLEMA SENZA PREPROCESSAMENTO *//
 	writeDat("./firstattempt.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
+	
 	std::cout<<"\n------ AFTER PREPROCESSING -------\n\n";
 	
 	//* PROVO A RIDURRE I BOUNDS DELLE VARIABILI *//
@@ -131,9 +134,10 @@ int main(){
 	if(num_x==0 && num_y==0)
 	{
 		coeffred = coefficientsReduction((float*)coeffEqu, numrow, num_var);
+		std::cout<<"Binary problem. Reduced coefficients: "<<coeffred<<std::endl;
 	}
 	
-	//* APPLICO PREPROCESS SUI VINCOLI
+	//* APPLICO PREPROCESS SUI VINCOLI *//
 	numrow = constraintsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
 	
 	//* SCRIVI SU FILE SOLO SE IL PROBLEMA HA SOLUZIONI AMMISSIBILI *//
@@ -143,10 +147,7 @@ int main(){
 		writeDat("./firstattemptafter.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
 	}
 	std::cout<<"\n\ntot: "<<num_var<<" x: "<<num_x<<" y: "<<num_y<<" z: "<<num_z<<" Numrow: "<<numrow<<std::endl;
-	if(num_x==0 && num_y==0)
-	{
-		std::cout<<"Binary problem. Reduced coefficients: "<<coeffred<<std::endl;
-	}
+	
 }
 
 
