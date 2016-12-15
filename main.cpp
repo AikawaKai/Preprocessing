@@ -12,6 +12,7 @@
 #include "print_utility.h"
 #include "write_utility.h"
 
+const int max_var = 20;
 const int max_val = 10;
 const int min_val = -10;
 
@@ -46,8 +47,8 @@ int neg_pos()
 int main(int argc,char *argv[]){
     //std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
     //* PSEUDO RANDOM *//	
-    std::mt19937 eng(4);
-    std::uniform_int_distribution<> distr(1, max_val);
+    std::mt19937 eng(5);
+    std::uniform_int_distribution<> distr(1, max_var);
 	
 	int bounds;
 	int coeffred;
