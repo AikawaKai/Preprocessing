@@ -33,13 +33,22 @@ Una volta che sono stati generati i due file .dat del problema preprocessato e n
 
 Una volta eseguito il programma con il file di configurazione presente in repo sono stati generati due file, "before.dat" e "after.dat".
 
-Si entra in AMPL e si carica il primo modello con i dati ottenuti prima del processamento
+Si entra in AMPL e si carica il primo modello con i dati ottenuti prima del preprocessamento
 
 ```
 model "model1.mod";
 data "before.dat";
 solve;
 ```
+
+Poi si testa lo stesso modello con dati differenti, e cioè quelli ottenuti dal preprocessamento
+
+```
+model "model1.mod";
+data "after.dat";
+solve;
+```
+
 
 
 
