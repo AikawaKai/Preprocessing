@@ -173,4 +173,15 @@ class floatVar: public Variable
 	
 };
 
+struct Parameters
+{
+		int numOfVar;
+		int maxVal;
+		int minVal;
+		int seed1;
+		int seed2;
+		std::string namefiledat1;
+		std::string namefiledat2;
+};
+
 

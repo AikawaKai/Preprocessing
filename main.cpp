@@ -1,5 +1,7 @@
 #include <iostream> 
 #include <sstream> 
+#include <fstream>
+#include <iterator>
 #include <limits>
 #include <typeinfo>
 #include <vector>
@@ -30,7 +32,7 @@ namespace patch
 //* FUNZIONE PER IL CAMBIO DI SEGNO *//
 int neg_pos()
 {
-	std::mt19937 eng(11);
+	std::mt19937 eng(7);
     std::uniform_int_distribution<> distr_pari_dispari(0, 1);
     if(distr_pari_dispari(eng)==0)
     {
@@ -39,15 +41,39 @@ int neg_pos()
 	{
 		return -1;
 	}
-    
-	
+}
+
+//* FUNZIONE PER LEGGERE I PARAMETRI DA FILE *//
+Parameters readFileToVector(const std::string& filename)
+{
+	Parameters param;
+    std::ifstream source;
+    source.open(filename);
+    std::vector<std::string> lines;
+    std::string line;
+    std::vector<std::string> tokens;
+    while (std::getline(source, line))
+    {
+    	std::istringstream iss(line);
+        tokens = {std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>{}};
+        std::cout<<tokens.at(1)<<"\n";
+        lines.push_back(tokens.at(1));
+        
+    }
+    return param;
 }
 
 //* MIXED PROBLEM: CONTINUOS - INTEGER - BINARY  *//
 int main(int argc,char *argv[]){
+	
+	std::string charactersFilename(argv[1]);
+    Parameters param = readFileToVector(charactersFilename);
+    
+    //* RANDOM *//
     //std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
+    
     //* PSEUDO RANDOM *//	
-    std::mt19937 eng(5);
+    std::mt19937 eng(9);
     std::uniform_int_distribution<> distr(1, max_var);
 	
 	int bounds;
