@@ -2,7 +2,7 @@ NumOfVar: 5
 NumOfVinc: 3
 MaxVal: 10
 MinVal: -10
-Seed1: 13
+Seed1: 1241
 NameFileDat1: before.dat
 NameFileDat2: after.dat
 bin: 0
