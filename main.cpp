@@ -14,10 +14,6 @@
 #include "print_utility.h"
 #include "write_utility.h"
 
-const int max_var = 20;
-const int max_val = 10;
-const int min_val = -10;
-
 //* PATCH PER IL TO_STRING DI VARIABILI INTERE *//
 namespace patch
 {
@@ -30,9 +26,9 @@ namespace patch
 }
 
 //* FUNZIONE PER IL CAMBIO DI SEGNO *//
-int neg_pos()
+int neg_pos(int seed)
 {
-	std::mt19937 eng(7);
+	std::mt19937 eng(seed);
     std::uniform_int_distribution<> distr_pari_dispari(0, 1);
     if(distr_pari_dispari(eng)==0)
     {
@@ -56,10 +52,16 @@ Parameters readFileToVector(const std::string& filename)
     {
     	std::istringstream iss(line);
         tokens = {std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>{}};
-        std::cout<<tokens.at(1)<<"\n";
         lines.push_back(tokens.at(1));
         
     }
+    param.numOfVar=std::stoi(lines.at(0));
+    param.maxVal=std::stoi(lines.at(1));
+    param.minVal=std::stoi(lines.at(2));
+    param.seed1 = std::stoi(lines.at(3));
+    param.seed2 = std::stoi(lines.at(4));
+    param.namefiledat1 = lines.at(5);
+    param.namefiledat2 = lines.at(6);
     return param;
 }
 
@@ -69,11 +71,19 @@ int main(int argc,char *argv[]){
 	std::string charactersFilename(argv[1]);
     Parameters param = readFileToVector(charactersFilename);
     
+    int max_var = param.numOfVar;
+	int max_val = param.maxVal;
+	int min_val = param.minVal;
+	int seed1 = param.seed1;
+	int seed2 = param.seed2;
+	std::string namefile1 = param.namefiledat1;
+	std::string namefile2 = param.namefiledat2;
+    
     //* RANDOM *//
     //std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
     
     //* PSEUDO RANDOM *//	
-    std::mt19937 eng(9);
+    std::mt19937 eng(seed1);
     std::uniform_int_distribution<> distr(1, max_var);
 	
 	int bounds;
@@ -83,7 +93,7 @@ int main(int argc,char *argv[]){
 	int num_x, num_y, num_z;
 	
 	//* LANCIO UN DADO PER CAPIRE SE SIAMO IN UN MIP O BIP (PER TESTARE LA COEFFICIENT REDUCTION NEL CASO SPECIFICO DELLA BIP) *//
-	if(neg_pos()==-1)
+	if(neg_pos(seed2)==-1)
 	{
 		//* CASO BINARIO *//
 		num_x = 0;
@@ -149,7 +159,7 @@ int main(int argc,char *argv[]){
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
 	
 	//* SCRIVO SU FILE I DATI DEL PROBLEMA SENZA PREPROCESSAMENTO *//
-	writeDat("./firstattempt.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
+	writeDat(namefile1, &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
 	
 	std::cout<<"\n------ AFTER PREPROCESSING -------\n\n";
 	
@@ -168,11 +178,9 @@ int main(int argc,char *argv[]){
 	numrow = constraintsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
 	
 	//* SCRIVI SU FILE SOLO SE IL PROBLEMA HA SOLUZIONI AMMISSIBILI *//
-	if(numrow!=-1)
-	{
-		printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
-		writeDat("./firstattemptafter.dat", &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
-	}
+	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
+	writeDat(namefile2, &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
+	
 	std::cout<<"\n\ntot: "<<num_var<<" x: "<<num_x<<" y: "<<num_y<<" z: "<<num_z<<" Numrow: "<<numrow<<std::endl;
 	
 }

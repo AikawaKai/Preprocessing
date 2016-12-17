@@ -1,7 +1,7 @@
-NumOfVar: 10
-MaxVal: 10
+NumOfVar: 20
+MaxVal: 20
 MinVal: -10
-Seed1: 789
-Seed2: 190
+Seed1: 12312
+Seed2: 20
 NameFileDat1: before.dat
 NameFileDat2: after.dat

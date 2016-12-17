@@ -148,15 +148,17 @@ int constraintsPreprocess(std::vector<Variable*> *cond, float *coeffEqu, int num
 		bi = coeffEqu[i*(numcol+1)+numcol];
 		if(L>bi)
 		{
-			std::cout<<"Constraint "<<i<<" is infeasable";
-			return -1;
-		}else if(bi>=U)
+			std::cout<<"Constraint "<<i<<" is infeasable"<<"\n";
+			return numrow;
+		}
+		else if(bi>=U)
 		{
 			std::cout<<"Constraint "<<i<<" is redundant"<<std::endl;
 			deleteConstraint(coeffEqu, i, newrow, numcol);
 			newrow = constraintsPreprocess(cond, coeffEqu, newrow-1, numcol);
 			return newrow;
-		}else if(bi==L)
+		}
+		else if(bi==L)
 		{
 			float coeffCurr[numcol];
 			for(int k=0;k<numcol+1;k++)
