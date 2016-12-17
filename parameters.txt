@@ -1,6 +1,6 @@
 NumOfVar: 10
 NumOfVinc: 15
-MaxVal: 20
+MaxVal: 10
 MinVal: -10
 Seed1: 123
 NameFileDat1: before.dat

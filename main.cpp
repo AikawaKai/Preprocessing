@@ -147,7 +147,14 @@ int main(int argc,char *argv[]){
 	{
 		for(int j=0;j<num_var+1;j++)
 		{
-			coeffEqu[i][j]=distr_min(eng);
+			if(j==num_var)
+			{
+				coeffEqu[i][j]=distr_tn(eng);
+			}
+			else
+			{
+				coeffEqu[i][j]=distr_min(eng);
+			}
 		}
 	}
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
@@ -171,7 +178,6 @@ int main(int argc,char *argv[]){
 	//* APPLICO PREPROCESS SUI VINCOLI *//
 	numrow = constraintsPreprocess(&cond, (float*)coeffEqu, numrow, num_var);
 	
-	//* SCRIVI SU FILE SOLO SE IL PROBLEMA HA SOLUZIONI AMMISSIBILI *//
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
 	writeDat(namefile2, &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
 	
