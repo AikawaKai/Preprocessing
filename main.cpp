@@ -25,20 +25,6 @@ namespace patch
     }
 }
 
-//* FUNZIONE PER IL CAMBIO DI SEGNO *//
-int neg_pos(int seed)
-{
-	std::mt19937 eng(seed);
-    std::uniform_int_distribution<> distr_pari_dispari(0, 1);
-    if(distr_pari_dispari(eng)==0)
-    {
-    	return 1;
-	}else
-	{
-		return -1;
-	}
-}
-
 //* FUNZIONE PER LEGGERE I PARAMETRI DA FILE *//
 Parameters readFileToVector(const std::string& filename)
 {
@@ -56,12 +42,15 @@ Parameters readFileToVector(const std::string& filename)
         
     }
     param.numOfVar=std::stoi(lines.at(0));
-    param.maxVal=std::stoi(lines.at(1));
-    param.minVal=std::stoi(lines.at(2));
-    param.seed1 = std::stoi(lines.at(3));
-    param.seed2 = std::stoi(lines.at(4));
+    param.numRow = std::stoi(lines.at(1));
+    param.maxVal=std::stoi(lines.at(2));
+    param.minVal=std::stoi(lines.at(3));
+    param.seed1 = std::stoi(lines.at(4));
     param.namefiledat1 = lines.at(5);
     param.namefiledat2 = lines.at(6);
+    param.bin = std::stoi(lines.at(7));
+    param.max_tn = std::stoi(lines.at(8));
+    param.min_tn = std::stoi(lines.at(9));
     return param;
 }
 
@@ -71,29 +60,32 @@ int main(int argc,char *argv[]){
 	std::string charactersFilename(argv[1]);
     Parameters param = readFileToVector(charactersFilename);
     
-    int max_var = param.numOfVar;
+    int num_var = param.numOfVar;
+    int numrow = param.numRow;
 	int max_val = param.maxVal;
 	int min_val = param.minVal;
 	int seed1 = param.seed1;
-	int seed2 = param.seed2;
 	std::string namefile1 = param.namefiledat1;
 	std::string namefile2 = param.namefiledat2;
+	int bin = param.bin;
+	int max_tn = param.max_tn;
+	int min_tn = param.min_tn;
     
     //* RANDOM *//
     //std::mt19937 eng(std::chrono::steady_clock::now().time_since_epoch().count());
     
     //* PSEUDO RANDOM *//	
     std::mt19937 eng(seed1);
-    std::uniform_int_distribution<> distr(1, max_var);
+    
+    //* DISTRIBUZIONE TERMINI NOTI VINCOLI *//
+    std::uniform_int_distribution<> distr_tn(min_tn, max_tn);
 	
 	int bounds;
 	int coeffred;
-	int num_var = distr(eng);
-	int numrow = distr(eng);
 	int num_x, num_y, num_z;
 	
-	//* LANCIO UN DADO PER CAPIRE SE SIAMO IN UN MIP O BIP (PER TESTARE LA COEFFICIENT REDUCTION NEL CASO SPECIFICO DELLA BIP) *//
-	if(neg_pos(seed2)==-1)
+	//* CASO BINARIO O CASO MIP *//
+	if(bin==1)
 	{
 		//* CASO BINARIO *//
 		num_x = 0;
@@ -113,6 +105,8 @@ int main(int argc,char *argv[]){
 	
 	//* COSTRUISCO IL PROBLEMA *//
 	std::vector<Variable*> cond;
+	
+	//* DISTRIBUZIONE PER COEFFICIENTI E BOUND DELLE VARIABILI *//
 	std::uniform_int_distribution<> distr_min(min_val, max_val);
 	
 	//* VARIABILI CONTINUE *//

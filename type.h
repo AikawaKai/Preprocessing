@@ -176,12 +176,15 @@ class floatVar: public Variable
 struct Parameters
 {
 		int numOfVar;
+		int numRow;
 		int maxVal;
 		int minVal;
 		int seed1;
-		int seed2;
 		std::string namefiledat1;
 		std::string namefiledat2;
+		int bin;
+		int max_tn;
+		int min_tn;
 };
 
 
