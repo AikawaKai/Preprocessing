@@ -1,5 +1,6 @@
 # Preprocessing
-Operational Research Preprocessing on MIP
+
+Tramite questo progetto in cpp è possibile realizzare pseudo-randomicamente dei modelli di programmazione lineare intera\continua\binaria\mista e applicarvi alcune tecniche di preprocessing (Per maggiori dettagli si invita a leggere il contenuto della relazione.pdf, nella folder Relazione della repo)
 
 # Istruzione per la compilazione:
 
@@ -10,3 +11,14 @@ g++ -std=c++11 -o preprocess.exe utility.cpp write_utility.cpp print_utility.cpp
 ./preprocess.exe parameters.txt
 
 # Contenuto parameters.txt
+
+NumOfVar: 5  [Il numero di variabili che si vuole generare nel problema]
+NumOfVinc: 3 [Il numero di vincoli che si vogliono generare per il problema]
+MaxVal: 10 [Il valore massimo che possono assumere i coefficienti e i bound delle variabili]
+MinVal: -10 [Il valore minimo che possono assumere i coefficienti e i boun delle variabili]
+Seed1: 1241 [Il seed da inizializzare per i diversi generatori presenti all'interno del codice]
+NameFileDat1: before.dat Il nome del file dati da utilizzare per AMPL, in cui verranno scritti i dati del problema prima del preprocessamento
+NameFileDat2: after.dat Il nome del file dati da utilizzare per AMPL, in cui verranno scritti i dati a seguito del preprocessamento
+bin: 0 Variabile che ci dice se vogliamo il caso binario puro, o un caso mixed
+MaxValTN: 20
+MinValTN: 10
