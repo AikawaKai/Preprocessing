@@ -151,8 +151,7 @@ int main(int argc,char *argv[]){
 	printConstraints(&cond, (float*)coeffEqu, numrow, num_var);
 	writeDat(namefile2, &cond, (float *)coeffEqu, numrow, num_var, num_x, num_y,num_z);
 	
-	std::cout<<"\n\ntot: "<<num_var<<" x: "<<num_x<<" y: "<<num_y<<" z: "<<num_z<<" Numrow: "<<numrow<<std::endl;
-	
+	std::cout<<"\n\ntot: "<<num_var<<" x: "<<num_x<<" y: "<<num_y<<" z: "<<num_z<<" Numrow: "<<numrow<<std::endl;	
 }
 
 

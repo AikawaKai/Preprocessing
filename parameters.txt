@@ -1,10 +1,10 @@
-NumOfVar: 10
-NumOfVinc: 15
+NumOfVar: 5
+NumOfVinc: 3
 MaxVal: 10
 MinVal: -10
-Seed1: 123
+Seed1: 13
 NameFileDat1: before.dat
 NameFileDat2: after.dat
 bin: 0
-MaxValTN: 200
-MinValTN: 100
+MaxValTN: 20
+MinValTN: 10
